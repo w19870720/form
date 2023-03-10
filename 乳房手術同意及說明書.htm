@@ -1,0 +1,2158 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0084)file://\\VBOXSVR\myFile\ImageSVR.CFS\Designer 公司內部專用\FormGarden 2020\temp.html -->
+<HTML><HEAD>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<META content="MSHTML 6.00.2900.6550" name=GENERATOR>
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Weather PWA">
+<meta name="viewport" content="width=734">
+
+<script>
+    var page_id = "7484545";
+
+    function get_sess_data(){
+        document.getElementById("姓名").value = window.sessionStorage.getItem("name");
+        document.getElementById("病歷號碼").value = window.sessionStorage.getItem("pid");
+        document.getElementById("性別").value = window.sessionStorage.getItem("sex");
+    }
+
+</script>
+<link rel="stylesheet" href="css/main.css">
+<script src="main.js"></script>
+
+</HEAD>
+<BODY>
+  <div>
+    <div class="signat_box">
+        <div class="main_box">
+            <div class="out_btn">
+                <button id="signat_clean">
+                    <span class="material-icons">clear</span>
+                    清除
+                </button>
+                <button id="signat_cancle">
+                    <span class="material-icons">edit</span>
+                    取消
+                </button>
+                <button id="signat_send">確定</button>
+            </div>
+            <div class="signat_drag_box bg_glay">
+                <canvas id="signat"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="signat_box">
+        <div class="main_box">
+            <div class="out_btn">
+                <button id="signat_clean">清除</button>
+                <button id="signat_cancle">取消</button>
+                <button id="signat_send">確定</button>
+            </div>
+            <div class="signat_drag_box">
+                <canvas id="signat"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="canvas_box">
+        <div class="main_box">
+            <div class="menu_box">
+                <div class="lightBorder _width">
+                    <label for="drag_pen">
+                        <input type="radio" name="shape" id="drag_pen" value="drag_pen" checked="checked">
+                        <span class="material-icons type_button">
+                            brush
+                        </span>
+                    </label>
+                    <label for="drag_eraser">
+                        <input type="radio" name="shape" id="drag_eraser" value="drag_eraser">
+                        <span class="material-icons type_button">
+                            how_to_vote
+                        </span>
+                    </label>
+                    <label for="drag_line">
+                        <input type="radio" name="shape" id="drag_line" value="drag_line">
+                        <span class="material-icons type_button">
+                            show_chart
+                        </span>
+                    </label>
+                    <label for="drag_arrow">
+                        <input type="radio" name="shape" id="drag_arrow" value="drag_arrow">
+                        <span class="material-icons type_button">
+                            call_made
+                        </span>
+                    </label>
+                    <label for="drag_spray">
+                        <input type="radio" name="shape" id="drag_spray" value="drag_spray">
+                        <span class="material-icons type_button">
+                            blur_on
+                        </span>
+                    </label>
+                    <label for="drag_cross">
+                        <input type="radio" name="shape" id="drag_cross" value="drag_cross">
+                        <span class="material-icons type_button">
+                            close
+                        </span>
+                    </label>
+                    <label for="drag_plus">
+                        <input type="radio" name="shape" id="drag_plus" value="drag_plus">
+                        <span class="material-icons type_button">
+                            add
+                        </span>
+                    </label>
+
+                    <label for="drag_circle_s">
+                        <input type="radio" name="shape" id="drag_circle_s" value="drag_circle_s">
+                        <span class="material-icons type_button">
+                            panorama_fish_eye
+                        </span>
+                    </label>
+                    <label for="drag_circle_f">
+                        <input type="radio" name="shape" id="drag_circle_f" value="drag_circle_f">
+                        <span class="material-icons type_button">
+                            lens
+                        </span>
+                    </label>
+                    <label for="drag_star_s">
+                        <input type="radio" name="shape" id="drag_star_s" value="drag_star_s">
+                        <span class="material-icons type_button">
+                            star_border
+                        </span>
+                    </label>
+                    <label for="drag_star_f">
+                        <input type="radio" name="shape" id="drag_star_f" value="drag_star_f">
+                        <span class="material-icons type_button">
+                            star
+                        </span>
+                    </label>
+                    <label for="drag_text">
+                        <input type="radio" name="shape" id="drag_text" value="drag_text">
+                        <span class="material-icons type_button">
+                            text_format
+                        </span>
+                    </label>
+            
+                    
+                </div>
+                <div class="lightBorder _size">
+                    <div id="width_type">
+                        <h6 class="txt">粗細</h6>
+                        <select id="lineWidth">
+                            <option value="1">1</option>
+                            <option value="5" selected>5</option>
+                            <option value="9">9</option>
+                            <option value="13">13</option>
+                            <option value="17">17</option>
+                            <option value="21">21</option>
+                            <option value="25">25</option>
+                            <option value="29">29</option>
+                        </select>
+                
+                        <button class="line_button" data-width="1">
+                            <div class="in_box" style="height: 1px;"></div>
+                        </button>
+                        <button class="line_button" data-width="5">
+                            <div class="in_box" style="height: 5px;"></div>
+                        </button>
+                        <button class="line_button" data-width="9">
+                            <div class="in_box" style="height: 9px;"></div>
+                        </button>
+                        <button class="line_button" data-width="13">
+                            <div class="in_box" style="height: 13px;"></div>
+                        </button>
+                        <button class="line_button" data-width="17">
+                            <div class="in_box" style="height: 17px;"></div>
+                        </button>
+                        <button class="line_button" data-width="21">
+                            <div class="in_box" style="height: 21px;"></div>
+                        </button>
+                        <button class="line_button" data-width="25">
+                            <div class="in_box" style="height: 25px;"></div>
+                        </button>
+                        <button class="line_button" data-width="25">
+                            <div class="in_box" style="height: 25px;"></div>
+                        </button>
+
+
+                        
+                    </div>
+                    <div id="text_type">
+                        <h6 class="txt">文字</h6>
+                        
+                        <input type="text" list="other_list" id="input_txt" value="" />
+                        <datalist id="other_list">
+                            <option>Volvo</option>
+                            <option>YAMAHA</option>
+                            <option>Mercedes</option>
+                            <option>Audi</option>
+                        </datalist>
+                    </div>
+                    <div id="size_type">
+                        <h6 class="txt">尺寸</h6>
+                        <select id="markWidth" >
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                            <option value="20" selected>20</option>
+                            <option value="25">25</option>
+                            <option value="30">30</option>
+                            <option value="35">35</option>
+                            <option value="40">40</option>
+                            <option value="45">45</option>
+                        </select>
+                        <button class="size_button" data-width="10">10</button>
+                        <button class="size_button" data-width="15">15</button>
+                        <button class="size_button" data-width="20">20</button>
+                        <button class="size_button" data-width="25">25</button>
+                        <button class="size_button" data-width="30">30</button>
+                        <button class="size_button" data-width="35">35</button>
+                        <button class="size_button" data-width="40">40</button>
+                        <button class="size_button" data-width="45">45</button>                   
+                    </div>
+                    <div id="color_type">
+                        <h6 class="txt">顏色</h6>
+        
+                        <input id="fillColor" type="color" step="1" value="#ff0000">
+                        <button class="color_button" data-color="#ff0000">
+                            <div class="in_box" style="background-color: #ff0000;"></div>
+                        </button>
+                        <button class="color_button" data-color="#ffff00">
+                            <div class="in_box" style="background-color: #ffff00;"></div>
+                        </button>
+                        <button class="color_button" data-color="#00ff00">
+                            <div class="in_box" style="background-color: #00ff00;"></div>
+                        </button>
+                        <button class="color_button" data-color="#00ffff">
+                            <div class="in_box" style="background-color: #00ffff;"></div>
+                        </button>
+                        <button class="color_button" data-color="#0000ff">
+                            <div class="in_box" style="background-color: #0000ff;"></div>
+                        </button>
+                        <button class="color_button" data-color="#ff00ff">
+                            <div class="in_box" style="background-color: #ff00ff;"></div>
+                        </button>
+                        <button class="color_button" data-color="#ffffff">
+                            <div class="in_box" style="background-color: #ffffff;"></div>
+                        </button>
+                        <button class="color_button" data-color="#000000">
+                            <div class="in_box" style="background-color: #000000;"></div>
+                        </button>
+                    </div>
+
+                </div>
+                <!-- <div class="lightBorder _color">
+                    
+                    
+
+                </div> -->
+            </div>
+    
+
+            <div class="out_btn">
+                <button id="canvas_clean">清除</button>
+                <button id="canvas_cancle">取消</button>
+                <button id="canvas_send">確定</button>
+            </div>
+            <div class="drag_box">
+                <!-- <img class="drag_bg"> -->
+                <input type="image" class="drag_bg">
+                <canvas id="cvs"></canvas>
+                <canvas id="cvs_cursor"></canvas>
+            </div>
+
+
+
+        </div>
+    </div>
+    <div class="video_box">
+        <div class="main_box">
+            <div class="lightBorder">
+                <select id="videoSource">
+                    <!-- <option value="1">1</option> -->
+                </select>
+            </div>
+            <div class="out_btn">
+                <button id="cam_cancle">取消</button>
+                <button id="cam_send">拍照</button>
+            </div>
+            <div class="video">
+
+                <video id="inputVideo"></video>
+
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="tree_box">
+        <div class="main_box ifreme">
+            <div class="out_btn">
+                <button id="tree_cancle">取消</button>
+                <button id="tree_send">擷取圖片</button>
+            </div>
+            <iframe src="" id="iframe_tree"></iframe>
+
+        </div>
+    </div>
+
+
+    <ul class="text_menu">
+        <li class="menu-item menu-item-disabled">
+            <button type="button" class="menu-btn">
+                <span class="menu-text">插入片語</span>
+            </button>
+        </li>
+        <li class="menu-separator"></li>
+        <li class="menu-item">
+            <button type="button" class="menu-btn input_txt" data-txt="皮膚膿瘍">
+                <span class="menu-text">皮膚膿瘍</span>
+            </button>
+        </li>
+        <li class="menu-item">
+            <button type="button" class="menu-btn input_txt" data-txt="蜂窩組織炎">
+                <span class="menu-text">蜂窩組織炎</span>
+            </button>
+        </li>
+        <li class="menu-item">
+            <button type="button" class="menu-btn input_txt" data-txt="異位性皮膚炎">
+                <span class="menu-text">異位性皮膚炎</span>
+            </button>
+        </li>
+        <li class="menu-item">
+            <button type="button" class="menu-btn input_txt" data-txt="脂漏性皮膚炎">
+                <span class="menu-text">脂漏性皮膚炎</span>
+            </button>
+        </li>
+        <li class="menu-item">
+            <button type="button" class="menu-btn input_txt" data-txt="過敏性接觸性皮膚炎">
+                <span class="menu-text">過敏性接觸性皮膚炎</span>
+            </button>
+        </li>
+        <li class="menu-item">
+            <button type="button" class="menu-btn input_txt" data-txt="接觸性皮膚炎">
+                <span class="menu-text">接觸性皮膚炎</span>
+            </button>
+        </li>
+        <li class="menu-item">
+            <button type="button" class="menu-btn input_txt" data-txt="感染性皮膚炎">
+                <span class="menu-text">感染性皮膚炎</span>
+            </button>
+        </li>
+        <li class="menu-item">
+            <button type="button" class="menu-btn input_txt" data-txt="濕疹">
+                <span class="menu-text">濕疹</span>
+            </button>
+        </li>
+        <li class="menu-item">
+            <button type="button" class="menu-btn input_txt" data-txt="癢疹">
+                <span class="menu-text">癢疹</span>
+            </button>
+        </li>
+    </ul>
+
+    <ul class="canvas_menu">
+
+        <li class="canvas_item">
+            <button type="button" class="open_canvas">
+                <div class="menu-text">編輯此圖片</div>
+                <div class="menu-icon" style="background-image: url(img/img_01.png)"></div>
+            </button>
+        </li>
+
+        <li class="canvas_item">
+            <button type="button" class="gggg">
+                <div class="menu-text">更換圖片</div>
+                <div class="menu-icon" style="background-image: url(img/img_02.png)"></div>
+        
+                <input type='file' class="input_img" accept="image/*" />
+            </button>
+        </li>
+        <li class="canvas_item">
+            <button type="button" class="open_recode">
+                <div class="menu-text">打開攝影機</div>
+                <div class="menu-icon" style="background-image: url(img/img_03.png)"></div>
+        
+            </button>
+        </li>
+        <li class="canvas_item">
+            <button type="button" class="open_tree">
+                <div class="menu-text">選擇家族樹</div>
+                <div class="menu-icon" style="background-image: url(img/img_04.png)"></div>
+            
+            </button>
+        </li>
+
+    </ul>
+</div>
+    <div id="main_form">
+<TABLE cellSpacing=0 cols=28 cellPadding=0 border=0 ROWS="60">
+  <TBODY>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=center align=middle width=462 bgColor=#ffffff colSpan=22 
+    height=40 rowSpan=2><FONT face=標楷體 color=#000000 size=5>桃園醫院</FONT> </TD>
+    <TD class=borderLeftTop vAlign=center align=left width=84 bgColor=#ffffff 
+    colSpan=4 height=20><FONT face=標楷體 color=#000000 
+      size=3>姓&nbsp;&nbsp;&nbsp;&nbsp;名：</FONT> </TD>
+    <TD class=borderRightTop vAlign=center align=left width=21 bgColor=#ffffff 
+    height=20><FONT face=新細明體 color=#000000 size=3><INPUT id=姓名 
+      style="WIDTH: 98%; HEIGHT: 95%" name=姓名></FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderLeft vAlign=center align=left width=84 bgColor=#ffffff 
+    colSpan=4 height=20><FONT face=標楷體 color=#000000 size=3>病歷號碼：</FONT> </TD>
+    <TD class=borderRight vAlign=center align=left width=21 bgColor=#ffffff 
+    height=20><FONT face=新細明體 color=#000000 size=3><INPUT id=病歷號碼 
+      style="WIDTH: 98%; HEIGHT: 95%" name=病歷號碼></FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=center align=middle width=462 bgColor=#ffffff colSpan=22 
+    height=60 rowSpan=3><FONT face=標楷體 color=#000000 size=5>乳房手術同意及說明書</FONT> 
+    </TD>
+    <TD class=borderLeft vAlign=center align=left width=84 bgColor=#ffffff 
+    colSpan=4 height=20><FONT face=標楷體 color=#000000 
+      size=3>年&nbsp;&nbsp;&nbsp;&nbsp;齡：</FONT> </TD>
+    <TD class=borderRight vAlign=center align=left width=21 bgColor=#ffffff 
+    height=20><FONT face=新細明體 color=#000000 size=3><INPUT id=年齡 
+      style="WIDTH: 98%; HEIGHT: 95%" name=年齡></FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderLeft vAlign=center align=left width=84 bgColor=#ffffff 
+    colSpan=4 height=20><FONT face=標楷體 color=#000000 
+      size=3>性&nbsp;&nbsp;&nbsp;&nbsp;別：</FONT> </TD>
+    <TD class=borderRight vAlign=center align=left width=21 bgColor=#ffffff 
+    height=20><FONT face=新細明體 color=#000000 size=3><INPUT id=性別 
+      style="WIDTH: 98%; HEIGHT: 95%" name=性別></FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderLeftBottom vAlign=center align=left width=84 bgColor=#ffffff 
+    colSpan=4 height=20><FONT face=標楷體 color=#000000 
+      size=3>床&nbsp;&nbsp;&nbsp;&nbsp;號：</FONT> </TD>
+    <TD class=borderRightBottom vAlign=center align=left width=21 
+    bgColor=#ffffff height=20><FONT face=新細明體 color=#000000 size=3><INPUT 
+      id=床號 style="WIDTH: 98%; HEIGHT: 95%" name=床號></FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=top align=left width=567 bgColor=#ffffff colSpan=27 
+      height=20><FONT face=標楷體 color=#000000 
+      size=3>這份說明書是有關您即將接受的手術效益、風險及替代方案的書面說明，可做為您與醫師</FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=center align=left width=567 bgColor=#ffffff colSpan=27 
+      height=20><FONT face=標楷體 color=#000000 
+      size=3>討論時的補充資料。最重要的是我們希望您能充份瞭解資料的內容，所以請仔細閱讀；如</FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=center align=left width=567 bgColor=#ffffff colSpan=27 
+      height=20><FONT face=標楷體 color=#000000 
+      size=3>果經醫師說明後您還有對這個手術的任何疑問，請在簽名前再與您的醫師充分討論，醫師</FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=center align=left width=378 bgColor=#ffffff colSpan=18 
+      height=20><FONT face=標楷體 color=#000000 
+      size=3>會很樂意為您解答，讓我們一起為了您的健康努力。</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=17><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=17><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=17><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=17><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=17><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=17><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=17><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=17><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=17><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=17><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=17><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=17><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=17><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=17><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=17><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=17><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=17><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=17><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=17><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=17><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=17><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=17><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=17><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=17><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=17><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=17><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=17><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=17><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=center align=left width=84 bgColor=#ffffff colSpan=4 
+      height=20><FONT face=標楷體 color=#000000 size=3>手術名稱：</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=top align=left width=21 bgColor=#ffffff height=20><FONT 
+      face=標楷體 color=#000000 size=3><INPUT id=手術名稱:濃瘍引流 type=checkbox 
+      name=手術名稱:濃瘍引流></FONT> </TD>
+    <TD vAlign=top align=left width=84 bgColor=#ffffff colSpan=4 
+      height=20><FONT face=標楷體 color=#000000 size=3>濃瘍引流</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=top align=left width=21 bgColor=#ffffff height=20><FONT 
+      face=標楷體 color=#000000 size=3><INPUT id=手術名稱:腫瘤切除 type=checkbox 
+      name=手術名稱:腫瘤切除></FONT> </TD>
+    <TD vAlign=center align=left width=84 bgColor=#ffffff colSpan=4 
+      height=20><FONT face=標楷體 color=#000000 size=3>腫瘤切除</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=top align=left width=21 bgColor=#ffffff height=20><FONT 
+      face=標楷體 color=#000000 size=3><INPUT id=手術名稱:乳房部份切除併或不併腋下淋巴清除 
+      type=checkbox name=手術名稱:乳房部份切除併或不併腋下淋巴清除></FONT> </TD>
+    <TD vAlign=center align=left width=273 bgColor=#ffffff colSpan=13 
+      height=20><FONT face=標楷體 color=#000000 size=3>乳房部份切除(併或不併腋下淋巴清除)</FONT> 
+</TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=top align=left width=168 bgColor=#ffffff colSpan=8 height=220 
+    rowSpan=11><FONT face=標楷體 color=#000000 size=3>
+      <DIV jag-type="img_box"><IMG id=手術原因圖片_back height=253 alt=手術原因圖片_back 
+      src="手術原因圖片.jpg" width=253 name=手術原因圖片_back 
+      jag-type="img_back"><IMG id=手術原因圖片_front height=253 alt=手術原因圖片_front 
+      src="clean.png" width=253 name=手術原因圖片_front 
+jag-type="img_front"></DIV></FONT></TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=top align=left width=21 bgColor=#ffffff height=20><FONT 
+      face=標楷體 color=#000000 size=3><INPUT id=手術名稱:改良式根除手術 type=checkbox 
+      name=手術名稱:改良式根除手術></FONT> </TD>
+    <TD vAlign=center align=left width=126 bgColor=#ffffff colSpan=6 
+      height=20><FONT face=標楷體 color=#000000 size=3>改良式根除手術</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=top align=left width=21 bgColor=#ffffff height=20><FONT 
+      face=標楷體 color=#000000 size=3><INPUT id=手術名稱:根除手術 type=checkbox 
+      name=手術名稱:根除手術></FONT> </TD>
+    <TD vAlign=center align=left width=84 bgColor=#ffffff colSpan=4 
+      height=20><FONT face=標楷體 color=#000000 size=3>根除手術</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=top align=left width=21 bgColor=#ffffff height=20><FONT 
+      face=標楷體 color=#000000 size=3><INPUT id=手術名稱:麥瑪通手術 type=checkbox 
+      name=手術名稱:麥瑪通手術></FONT> </TD>
+    <TD vAlign=center align=left width=105 bgColor=#ffffff colSpan=5 
+      height=20><FONT face=標楷體 color=#000000 size=3>麥瑪通手術</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=top align=left width=21 bgColor=#ffffff height=20><FONT 
+      face=標楷體 color=#000000 size=3><INPUT id=手術名稱:超音波導引切片術 type=checkbox 
+      name=手術名稱:超音波導引切片術></FONT> </TD>
+    <TD vAlign=center align=left width=147 bgColor=#ffffff colSpan=7 
+      height=20><FONT face=標楷體 color=#000000 size=3>超音波導引切片術</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=top align=left width=21 bgColor=#ffffff height=20><FONT 
+      face=標楷體 color=#000000 size=3><INPUT id=手術名稱:前淋巴檢查等 type=checkbox 
+      name=手術名稱:前淋巴檢查等></FONT> </TD>
+    <TD vAlign=center align=left width=105 bgColor=#ffffff colSpan=5 
+      height=20><FONT face=標楷體 color=#000000 size=3>前淋巴檢查等</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=top align=left width=21 bgColor=#ffffff height=20><FONT 
+      face=標楷體 color=#000000 size=3><INPUT id=手術名稱:腫瘤切片手術 type=checkbox 
+      name=手術名稱:腫瘤切片手術></FONT> </TD>
+    <TD vAlign=center align=left width=105 bgColor=#ffffff colSpan=5 
+      height=20><FONT face=標楷體 color=#000000 size=3>腫瘤切片手術</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=top align=left width=21 bgColor=#ffffff height=20><FONT 
+      face=標楷體 color=#000000 size=3><INPUT id=手術名稱:其他 type=checkbox 
+      name=手術名稱:其他></FONT> </TD>
+    <TD vAlign=center align=left width=63 bgColor=#ffffff colSpan=3 
+      height=20><FONT face=標楷體 color=#000000 size=3>其他：</FONT> </TD>
+    <TD class=borderBottom vAlign=top align=left width=210 bgColor=#ffffff 
+    colSpan=10 height=20><FONT face=標楷體 color=#000000 size=3><INPUT id=其他手術 
+      style="WIDTH: 98%; HEIGHT: 95%" name=其他手術></FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=center align=left width=84 bgColor=#ffffff colSpan=4 
+      height=20><FONT face=標楷體 color=#000000 size=3>手術效益：</FONT> </TD>
+    <TD class=borderBottom vAlign=top align=left width=210 bgColor=#ffffff 
+    colSpan=10 height=20><FONT face=標楷體 color=#000000 size=3><SELECT id=手術效益 
+      style="WIDTH: 230px" name=手術效益><OPTION value=徹底清除腫瘤 
+        selected>徹底清除腫瘤</OPTION><OPTION value=""></OPTION></SELECT></FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=center align=left width=84 bgColor=#ffffff colSpan=4 
+      height=20><FONT face=標楷體 color=#000000 size=3>手術風險：</FONT> </TD>
+    <TD class=borderBottom vAlign=top align=left width=210 bgColor=#ffffff 
+    colSpan=10 height=20><FONT face=標楷體 color=#000000 size=3><SELECT id=手術風險 
+      style="WIDTH: 230px" name=手術風險><OPTION value=手臂水腫 
+        selected>手臂水腫</OPTION><OPTION value=氣胸、臂神經叢受損>氣胸、臂神經叢受損</OPTION><OPTION 
+        value=""></OPTION></SELECT></FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=center align=left width=294 bgColor=#ffffff colSpan=14 
+      height=20><FONT face=標楷體 color=#000000 size=3>壹、乳房手術本身危險性極低，包括：</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD vAlign=center align=left width=420 bgColor=#ffffff colSpan=20 
+      height=20><FONT face=標楷體 color=#000000 
+      size=3>一、全身麻醉或局部麻醉引起之不良反應如過敏反應。</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=center align=left width=210 bgColor=#ffffff colSpan=10 
+      height=20><FONT face=標楷體 color=#000000 size=3>二、血腫(接近百分之一)。</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=center align=left width=210 bgColor=#ffffff colSpan=10 
+      height=20><FONT face=標楷體 color=#000000 size=3>三、感染(接近百分之一)。</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=center align=left width=231 bgColor=#ffffff colSpan=11 
+      height=20><FONT face=標楷體 color=#000000 size=3>四、皮瓣壞死(接近百分之一)。</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=center align=left width=210 bgColor=#ffffff colSpan=10 
+      height=20><FONT face=標楷體 color=#000000 size=3>五、腋下、胸壁疼痛發麻。</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=center align=left width=462 bgColor=#ffffff colSpan=22 
+      height=20><FONT face=標楷體 color=#000000 
+      size=3>六、手臂、淋巴水腫(腋下淋巴清除後才發生，接近百分之一)。</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=center align=left width=252 bgColor=#ffffff colSpan=12 
+      height=20><FONT face=標楷體 color=#000000 size=3>七、其他偶發之病變及併發症。</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=center align=left width=210 bgColor=#ffffff colSpan=10 
+      height=20><FONT face=標楷體 color=#000000 size=3>八、藥物引起之過敏反應。</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=center align=left width=567 bgColor=#ffffff colSpan=27 
+      height=20><FONT face=標楷體 color=#000000 
+      size=3>貳、乳房腫瘤手術方法因疾病不同而有不同方式，請與醫師溝通後，確認手術方法。</FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=center align=left width=567 bgColor=#ffffff colSpan=27 
+      height=20><FONT face=標楷體 color=#000000 
+      size=3>參、乳癌的存活率非單由手術決定，有關術後輔助性治療，請與醫師討論配合，&nbsp;做最</FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD vAlign=center align=left width=231 bgColor=#ffffff colSpan=11 
+      height=20><FONT face=標楷體 color=#000000 size=3>&nbsp;合宜之選擇，以提高存活率。</FONT> 
+    </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=center align=left width=420 bgColor=#ffffff colSpan=20 
+      height=20><FONT face=標楷體 color=#000000 
+      size=3>肆、上述說明如有疑問，請在立同意書時詢問有關醫師。</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=2>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=center align=left width=84 bgColor=#ffffff colSpan=4 
+      height=20><FONT face=標楷體 color=#000000 size=3>替代方案：</FONT> </TD>
+    <TD class=borderBottom vAlign=top align=left width=210 bgColor=#ffffff 
+    colSpan=10 height=20><FONT face=標楷體 color=#000000 size=3><SELECT id=替代方案 
+      style="WIDTH: 230px" name=替代方案><OPTION value=化學治療 
+        selected>化學治療</OPTION><OPTION value=抗荷爾蒙治療>抗荷爾蒙治療</OPTION><OPTION 
+        value=""></OPTION></SELECT></FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=center align=left width=126 bgColor=#ffffff colSpan=6 
+      height=20><FONT face=標楷體 color=#000000 size=3>醫師補充說明：</FONT> </TD>
+    <TD vAlign=top align=left width=441 bgColor=#ffffff colSpan=21 height=80 
+    rowSpan=4><FONT face=標楷體 color=#000000 size=3><TEXTAREA id=醫師補充說明 style="WIDTH: 98%; HEIGHT: 95%" name=醫師補充說明></TEXTAREA></FONT> 
+    </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=96 bgColor=#ffffff colSpan=5 height=23><FONT 
+      face="MS Sans Serif" color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD vAlign=top align=left width=126 bgColor=#ffffff colSpan=6 height=43 
+    rowSpan=2><FONT face="MS Sans Serif" color=#000000 size=1><IMG 
+      id=IDX048006 height=46 alt=IDX048006 src="clean.png" 
+      width=138 name=IDX048006 jag-type="signat"></FONT> </TD>
+    <TD width=357 bgColor=#ffffff colSpan=17 height=23><FONT 
+      face="MS Sans Serif" color=#000000 size=1>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=center align=left width=84 bgColor=#ffffff colSpan=4 
+      height=20><FONT face=標楷體 color=#000000 size=3>說明醫師：</FONT> </TD>
+    <TD vAlign=center align=left width=63 bgColor=#ffffff colSpan=3 
+      height=20><FONT face=標楷體 color=#000000 size=3>(簽章)</FONT> </TD>
+    <TD vAlign=center align=left width=63 bgColor=#ffffff colSpan=3 
+      height=20><FONT face=標楷體 color=#000000 size=3>日期：</FONT> </TD>
+    <TD class=borderBottom vAlign=top align=left width=105 bgColor=#ffffff 
+    colSpan=5 height=20><FONT face=標楷體 color=#000000 size=3><INPUT id=醫師簽章日期 
+      type=date name=醫師簽章日期></FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=center align=left width=63 bgColor=#ffffff colSpan=3 
+      height=20><FONT face=標楷體 color=#000000 size=3>時間：</FONT> </TD>
+    <TD class=borderBottom vAlign=top align=left width=42 bgColor=#ffffff 
+    colSpan=2 height=20><FONT face=標楷體 color=#000000 size=3><INPUT id=醫師簽章時間 
+      type=time name=醫師簽章時間></FONT> </TD></TR>
+  <TR>
+    <TD class=tableHead width=579 bgColor=#ccccff colSpan=28 height=16><FONT 
+      face="MS Sans Serif" color=#000000 size=1>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=center align=left width=105 bgColor=#ffffff colSpan=5 
+      height=20><FONT face=標楷體 color=#000000 size=3>本人(或家屬)</FONT> </TD>
+    <TD class=borderBottom vAlign=top align=left width=126 bgColor=#ffffff 
+    colSpan=6 height=20><FONT face=標楷體 color=#000000 size=3><INPUT id=本人或家屬姓名 
+      style="WIDTH: 98%; HEIGHT: 95%" name=本人或家屬姓名></FONT> </TD>
+    <TD vAlign=center align=left width=336 bgColor=#ffffff colSpan=16 
+      height=20><FONT face=標楷體 color=#000000 
+      size=3>已經與醫師討論過接受這個手術的效益，風險及替代方案，</FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=center align=left width=567 bgColor=#ffffff colSpan=27 
+      height=20><FONT face=標楷體 color=#000000 
+      size=3>本人對醫師的說明都已充分了解，並且同意接受此項手術並保有此資料副本一份。</FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=22><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=22><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=22><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=22><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=22><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=22><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD vAlign=top align=left width=126 bgColor=#ffffff colSpan=6 height=42 
+    rowSpan=2><FONT face="MS Sans Serif" color=#000000 size=1><IMG 
+      id=IDX054007 height=46 alt=IDX054007 src="clean.png" 
+      width=138 name=IDX054007 jag-type="signat"></FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=22><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=22><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=22><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=22><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=22><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=22><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=22><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=22><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=22><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=22><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=22><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=22><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=22><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=22><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=22><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=22><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=center align=left width=105 bgColor=#ffffff colSpan=5 
+      height=20><FONT face=標楷體 color=#000000 size=3>病人(或家屬):</FONT> </TD>
+    <TD vAlign=center align=left width=63 bgColor=#ffffff colSpan=3 
+      height=20><FONT face=標楷體 color=#000000 size=3>(簽章)</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=center align=left width=105 bgColor=#ffffff colSpan=5 
+      height=20><FONT face=標楷體 color=#000000 size=3>與病人的關係:</FONT> </TD>
+    <TD class=borderBottom vAlign=top align=left width=63 bgColor=#ffffff 
+    colSpan=3 height=20><FONT face=標楷體 color=#000000 size=3><INPUT id=與病人的關係 
+      style="WIDTH: 98%; HEIGHT: 95%" name=與病人的關係></FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=center align=left width=105 bgColor=#ffffff colSpan=5 
+      height=20><FONT face=標楷體 color=#000000 size=3>電話(或手機):</FONT> </TD>
+    <TD class=borderBottom vAlign=top align=left width=126 bgColor=#ffffff 
+    colSpan=6 height=20><FONT face=標楷體 color=#000000 size=3><INPUT id=電話或手機 
+      style="WIDTH: 98%; HEIGHT: 95%" name=電話或手機></FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=16><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=16><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=16><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=16><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD vAlign=top align=left width=168 bgColor=#ffffff colSpan=8 height=36 
+    rowSpan=2><FONT face="MS Sans Serif" color=#000000 size=1><IMG 
+      id=IDX057005 height=46 alt=IDX057005 src="clean.png" 
+      width=184 name=IDX057005 jag-type="signat"></FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=16><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=16><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=16><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=16><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=16><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=16><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=16><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=16><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=16><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=16><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=16><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=16><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=16><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=16><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=16><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=16><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=center align=left width=63 bgColor=#ffffff colSpan=3 
+      height=20><FONT face=標楷體 color=#000000 size=3>見證人:</FONT> </TD>
+    <TD vAlign=center align=left width=63 bgColor=#ffffff colSpan=3 
+      height=20><FONT face=標楷體 color=#000000 size=3>(簽章)</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=12 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=center align=left width=42 bgColor=#ffffff colSpan=2 
+      height=20><FONT face=標楷體 color=#000000 size=3>日期:</FONT> </TD>
+    <TD class=borderBottom vAlign=top align=left width=105 bgColor=#ffffff 
+    colSpan=5 height=20><FONT face=標楷體 color=#000000 size=3><INPUT id=日期 
+      type=date name=日期></FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=center align=left width=42 bgColor=#ffffff colSpan=2 
+      height=20><FONT face=標楷體 color=#000000 size=3>時間:</FONT> </TD>
+    <TD class=borderBottom vAlign=top align=left width=84 bgColor=#ffffff 
+    colSpan=4 height=20><FONT face=標楷體 color=#000000 size=3><INPUT id=時間 
+      type=time name=時間></FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=21 bgColor=#ffffff height=20><FONT face=標楷體 color=#000000 
+      size=3>&nbsp;</FONT> </TD></TR></TBODY>
+    </TABLE>
+  </div>
+
+  <button id="back">回清單</button>
+  <button id="save_data">存檔</button>
+  
+  </BODY></HTML>

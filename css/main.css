@@ -1,0 +1,468 @@
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body.drog, html.drog {
+  overflow: hidden;
+  height: 100%;
+}
+
+.canvas_box, .video_box, .signat_box, .tree_box {
+  position: fixed;
+  z-index: 1060;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: .625em;
+  overflow-x: hidden;
+  overflow-y: auto;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.4);
+  /* position: absolute; */
+  opacity: 0;
+  -webkit-transition: opacity 0.1s ease-out, -webkit-transform 0.1s ease-out;
+  transition: opacity 0.1s ease-out, -webkit-transform 0.1s ease-out;
+  transition: transform 0.1s ease-out, opacity 0.1s ease-out;
+  transition: transform 0.1s ease-out, opacity 0.1s ease-out, -webkit-transform 0.1s ease-out;
+  pointer-events: none;
+}
+
+.canvas_box.drog, .video_box.drog, .signat_box.drog, .tree_box.drog {
+  overflow: hidden;
+}
+
+.canvas_box .out_btn, .video_box .out_btn, .signat_box .out_btn, .tree_box .out_btn {
+  margin: 15px 0;
+}
+
+.canvas_box .out_btn button, .video_box .out_btn button, .signat_box .out_btn button, .tree_box .out_btn button {
+  width: 100px;
+  padding: 10px;
+  font-size: 18px;
+  outline: 0;
+  cursor: pointer;
+  background: 0 0;
+  display: inline-block;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  border: none;
+  border-radius: 5px;
+  background-color: #4080BE;
+  color: #ffffff;
+}
+
+.canvas_box .out_btn #canvas_clean, .canvas_box .out_btn #signat_clean, .video_box .out_btn #canvas_clean, .video_box .out_btn #signat_clean, .signat_box .out_btn #canvas_clean, .signat_box .out_btn #signat_clean, .tree_box .out_btn #canvas_clean, .tree_box .out_btn #signat_clean {
+  background: #1cb841;
+}
+
+.canvas_box .out_btn #canvas_cancle, .canvas_box .out_btn #signat_cancle, .canvas_box .out_btn #cam_cancle, .canvas_box .out_btn #tree_cancle, .video_box .out_btn #canvas_cancle, .video_box .out_btn #signat_cancle, .video_box .out_btn #cam_cancle, .video_box .out_btn #tree_cancle, .signat_box .out_btn #canvas_cancle, .signat_box .out_btn #signat_cancle, .signat_box .out_btn #cam_cancle, .signat_box .out_btn #tree_cancle, .tree_box .out_btn #canvas_cancle, .tree_box .out_btn #signat_cancle, .tree_box .out_btn #cam_cancle, .tree_box .out_btn #tree_cancle {
+  background: #728376;
+}
+
+canvas {
+  /* width: 600px;
+    height: 400px; */
+  /* border: #000 solid 1px; */
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  cursor: crosshair;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+canvas.cursor_none {
+  cursor: none;
+}
+
+canvas#cvs_cursor {
+  pointer-events: none;
+  z-index: 15;
+}
+
+.drag_bg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 5;
+}
+
+.bg_glay {
+  background-color: #dddddd;
+}
+
+video {
+  background-color: #000000;
+}
+
+.text_menu {
+  position: absolute;
+  width: 200px;
+  padding: 2px;
+  margin: 0;
+  border: 1px solid #bbb;
+  background: #eee;
+  background: linear-gradient(to bottom, #fff 0%, #e5e5e5 100px, #e5e5e5 100%);
+  z-index: 100;
+  border-radius: 3px;
+  -webkit-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+          box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  -webkit-transform: translate(0, 15px) scale(0.95);
+          transform: translate(0, 15px) scale(0.95);
+  -webkit-transition: opacity 0.1s ease-out, -webkit-transform 0.1s ease-out;
+  transition: opacity 0.1s ease-out, -webkit-transform 0.1s ease-out;
+  transition: transform 0.1s ease-out, opacity 0.1s ease-out;
+  transition: transform 0.1s ease-out, opacity 0.1s ease-out, -webkit-transform 0.1s ease-out;
+  pointer-events: none;
+}
+
+.menu-item {
+  display: block;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  white-space: nowrap;
+}
+
+.menu-btn {
+  display: block;
+  position: relative;
+  color: #444;
+  font-size: 13px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 8px;
+  border-radius: 3px;
+}
+
+button.menu-btn {
+  background: none;
+  line-height: normal;
+  overflow: visible;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  width: 100%;
+  text-align: left;
+}
+
+.menu-text {
+  margin-left: 25px;
+}
+
+.menu-item:hover > .menu-btn {
+  color: #fff;
+  outline: none;
+  background-color: #2E3940;
+  background: -webkit-gradient(linear, left top, left bottom, from(#5D6D79), to(#2E3940));
+  background: linear-gradient(to bottom, #5D6D79, #2E3940);
+  border: 1px solid #2E3940;
+}
+
+.menu-item-disabled {
+  opacity: .5;
+  pointer-events: none;
+}
+
+.menu-item-disabled .menu-btn {
+  cursor: default;
+}
+
+.menu-separator {
+  display: block;
+  margin: 7px 5px;
+  height: 1px;
+  border-bottom: 1px solid #fff;
+  background-color: #aaa;
+}
+
+.canvas_menu {
+  position: absolute;
+  padding: 2px;
+  margin: 0;
+  z-index: 100;
+  opacity: 0;
+  -webkit-transform: translate(-50%, -50%) scale(0.95);
+          transform: translate(-50%, -50%) scale(0.95);
+  -webkit-transition: opacity 0.2s ease-out, -webkit-transform 0.1s ease-out;
+  transition: opacity 0.2s ease-out, -webkit-transform 0.1s ease-out;
+  transition: transform 0.1s ease-out, opacity 0.2s ease-out;
+  transition: transform 0.1s ease-out, opacity 0.2s ease-out, -webkit-transform 0.1s ease-out;
+  pointer-events: none;
+}
+
+.canvas_menu .canvas_item {
+  width: 200px;
+  display: block;
+  position: relative;
+  padding: 15px;
+  white-space: nowrap;
+  text-align: right;
+}
+
+.canvas_menu .canvas_item:nth-child(2), .canvas_menu .canvas_item:nth-child(3) {
+  -webkit-transform: translateX(40px);
+          transform: translateX(40px);
+}
+
+.canvas_menu button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  background: none;
+  line-height: normal;
+  overflow: visible;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  cursor: pointer;
+  text-align: right;
+  font-size: 20px;
+  font-family: 'Noto Sans TC', Arial, 'Microsoft JhengHei';
+  position: relative;
+}
+
+.canvas_menu button .menu-text {
+  margin-left: 0;
+  line-height: 50px;
+  display: inline-block;
+  vertical-align: middle;
+  font-weight: bold;
+  color: #0881DF;
+  text-shadow: 0 0 5px #ffffff, 0 0 8px #ffffff;
+}
+
+.canvas_menu button .menu-icon {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  vertical-align: middle;
+  background-size: contain;
+}
+
+.canvas_menu button input[type="file"] {
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.menu-show {
+  opacity: 1;
+  -webkit-transform: translate(0, 0) scale(1);
+          transform: translate(0, 0) scale(1);
+  pointer-events: auto;
+}
+
+.canvas_menu.menu-show {
+  -webkit-transform: translate(-50%, -50%) scale(1);
+          transform: translate(-50%, -50%) scale(1);
+}
+
+.main_box {
+  width: 768px;
+  margin: auto;
+  padding: 20px;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.main_box .drag_box, .main_box .signat_drag_box {
+  position: relative;
+  display: inline-block;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.main_box.ifreme {
+  width: 80vw;
+  height: 95vh;
+}
+
+.main_box.ifreme iframe {
+  width: 100%;
+  height: calc(100% - 74px);
+}
+
+.menu_box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.menu_box ._width {
+  width: 185px;
+}
+
+.menu_box ._size {
+  width: 525px;
+}
+
+.menu_box ._color {
+  width: 185px;
+}
+
+.lightBorder {
+  margin: 5px;
+  padding: 4px;
+  text-align: left;
+  border-radius: 10px;
+  background-color: #AEDAE7;
+}
+
+.lightBorder #lineWidth, .lightBorder #input_txt, .lightBorder #markWidth, .lightBorder #fillColor {
+  width: 80px;
+}
+
+.lightBorder label {
+  margin: 3px;
+  display: inline-block;
+}
+
+.lightBorder label input[type=radio] {
+  display: none;
+}
+
+.lightBorder label span.type_button {
+  width: 35px;
+  height: 30px;
+  padding: 0;
+  cursor: pointer;
+  font-size: 22px;
+  line-height: 26px;
+  text-align: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border: none;
+  border: 2px solid #4080BE;
+  border-radius: 5px;
+  background-color: #4080BE;
+  color: #ffffff;
+}
+
+.lightBorder label span.type_button:active {
+  -webkit-filter: brightness(0.8);
+          filter: brightness(0.8);
+}
+
+.lightBorder label input[type=radio]:checked ~ span.type_button {
+  background-color: transparent;
+  color: #4080BE;
+}
+
+.lightBorder .txt {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: 'Noto Sans TC', Arial, 'Microsoft JhengHei';
+  color: #4080BE;
+}
+
+.lightBorder #lineWidth, .lightBorder .line_button, .lightBorder #markWidth, .lightBorder .size_button, .lightBorder #input_txt, .lightBorder #fillColor, .lightBorder .color_button {
+  height: 30px;
+  margin: 3px;
+  padding: 0;
+  display: inline-block;
+  cursor: pointer;
+  vertical-align: middle;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border: none;
+  outline: 0;
+  border: 2px solid #4080BE;
+  border-radius: 5px;
+  font-size: 18px;
+  color: #4080BE;
+  background-color: #ffffff;
+}
+
+.lightBorder #lineWidth:active, .lightBorder .line_button:active, .lightBorder #markWidth:active, .lightBorder .size_button:active, .lightBorder #input_txt:active, .lightBorder #fillColor:active, .lightBorder .color_button:active {
+  -webkit-filter: brightness(0.8);
+          filter: brightness(0.8);
+}
+
+.lightBorder .line_button, .lightBorder .size_button, .lightBorder .color_button {
+  width: 35px;
+  color: #ffffff;
+  background-color: #4080BE;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.lightBorder .line_button .in_box, .lightBorder .size_button .in_box, .lightBorder .color_button .in_box {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  vertical-align: middle;
+  background-color: #ffffff;
+}
+
+.lightBorder #input_txt {
+  width: 442px;
+  padding: 0 5px;
+}
+
+img {
+  position: absolute;
+}
+
+button#save_data {
+  background: #ca3c3c;
+  color: #ffffff;
+  font-size: 20px;
+}
+
+button#back {
+  background: #728376;
+  color: #ffffff;
+  font-size: 20px;
+}

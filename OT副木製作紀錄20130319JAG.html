@@ -1,0 +1,2655 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0090)file://\\VBOXSVR\myFile\ImageSVR.CFS\Designer 公司內部專用\SVR_FormDesigner 2020\temp.html -->
+<HTML><HEAD>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<META content="MSHTML 6.00.2900.6550" name=GENERATOR>
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Weather PWA">
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+<meta name="viewport" content="width=734">
+
+<script>
+    var page_id = "018712212";
+
+    function get_sess_data(){
+        // document.getElementById("IDX002022").value = window.sessionStorage.getItem("name");
+        // document.getElementById("IDX001022").value = window.sessionStorage.getItem("pid");
+        // document.getElementById("IDX042022").value = window.sessionStorage.getItem("did");
+    }
+
+</script>
+
+
+<link rel="stylesheet" href="css/main.css">
+<script src="main.js"></script>
+
+</HEAD>
+<BODY>
+    <div>
+        <div class="signat_box">
+            <div class="main_box">
+                <div class="out_btn">
+                    <button id="signat_clean">
+                        <span class="material-icons">clear</span>
+                        清除
+                    </button>
+                    <button id="signat_cancle">
+                        <span class="material-icons">edit</span>
+                        取消
+                    </button>
+                    <button id="signat_send">確定</button>
+                </div>
+                <div class="signat_drag_box bg_glay">
+                    <canvas id="signat"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="signat_box">
+            <div class="main_box">
+                <div class="out_btn">
+                    <button id="signat_clean">清除</button>
+                    <button id="signat_cancle">取消</button>
+                    <button id="signat_send">確定</button>
+                </div>
+                <div class="signat_drag_box">
+                    <canvas id="signat"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="canvas_box">
+            <div class="main_box">
+                <div class="menu_box">
+                    <div class="lightBorder _width">
+                        <label for="drag_pen">
+                            <input type="radio" name="shape" id="drag_pen" value="drag_pen" checked="checked">
+                            <span class="material-icons type_button">
+                                brush
+                            </span>
+                        </label>
+                        <label for="drag_eraser">
+                            <input type="radio" name="shape" id="drag_eraser" value="drag_eraser">
+                            <span class="material-icons type_button">
+                                how_to_vote
+                            </span>
+                        </label>
+                        <label for="drag_line">
+                            <input type="radio" name="shape" id="drag_line" value="drag_line">
+                            <span class="material-icons type_button">
+                                show_chart
+                            </span>
+                        </label>
+                        <label for="drag_arrow">
+                            <input type="radio" name="shape" id="drag_arrow" value="drag_arrow">
+                            <span class="material-icons type_button">
+                                call_made
+                            </span>
+                        </label>
+                        <label for="drag_spray">
+                            <input type="radio" name="shape" id="drag_spray" value="drag_spray">
+                            <span class="material-icons type_button">
+                                blur_on
+                            </span>
+                        </label>
+                        <label for="drag_cross">
+                            <input type="radio" name="shape" id="drag_cross" value="drag_cross">
+                            <span class="material-icons type_button">
+                                close
+                            </span>
+                        </label>
+                        <label for="drag_plus">
+                            <input type="radio" name="shape" id="drag_plus" value="drag_plus">
+                            <span class="material-icons type_button">
+                                add
+                            </span>
+                        </label>
+    
+                        <label for="drag_circle_s">
+                            <input type="radio" name="shape" id="drag_circle_s" value="drag_circle_s">
+                            <span class="material-icons type_button">
+                                panorama_fish_eye
+                            </span>
+                        </label>
+                        <label for="drag_circle_f">
+                            <input type="radio" name="shape" id="drag_circle_f" value="drag_circle_f">
+                            <span class="material-icons type_button">
+                                lens
+                            </span>
+                        </label>
+                        <label for="drag_star_s">
+                            <input type="radio" name="shape" id="drag_star_s" value="drag_star_s">
+                            <span class="material-icons type_button">
+                                star_border
+                            </span>
+                        </label>
+                        <label for="drag_star_f">
+                            <input type="radio" name="shape" id="drag_star_f" value="drag_star_f">
+                            <span class="material-icons type_button">
+                                star
+                            </span>
+                        </label>
+                        <label for="drag_text">
+                            <input type="radio" name="shape" id="drag_text" value="drag_text">
+                            <span class="material-icons type_button">
+                                text_format
+                            </span>
+                        </label>
+                
+                        
+                    </div>
+                    <div class="lightBorder _size">
+                        <div id="width_type">
+                            <h6 class="txt">粗細</h6>
+                            <select id="lineWidth">
+                                <option value="1">1</option>
+                                <option value="5" selected>5</option>
+                                <option value="9">9</option>
+                                <option value="13">13</option>
+                                <option value="17">17</option>
+                                <option value="21">21</option>
+                                <option value="25">25</option>
+                                <option value="29">29</option>
+                            </select>
+                    
+                            <button class="line_button" data-width="1">
+                                <div class="in_box" style="height: 1px;"></div>
+                            </button>
+                            <button class="line_button" data-width="5">
+                                <div class="in_box" style="height: 5px;"></div>
+                            </button>
+                            <button class="line_button" data-width="9">
+                                <div class="in_box" style="height: 9px;"></div>
+                            </button>
+                            <button class="line_button" data-width="13">
+                                <div class="in_box" style="height: 13px;"></div>
+                            </button>
+                            <button class="line_button" data-width="17">
+                                <div class="in_box" style="height: 17px;"></div>
+                            </button>
+                            <button class="line_button" data-width="21">
+                                <div class="in_box" style="height: 21px;"></div>
+                            </button>
+                            <button class="line_button" data-width="25">
+                                <div class="in_box" style="height: 25px;"></div>
+                            </button>
+                            <button class="line_button" data-width="25">
+                                <div class="in_box" style="height: 25px;"></div>
+                            </button>
+
+    
+                            
+                        </div>
+                        <div id="text_type">
+                            <h6 class="txt">文字</h6>
+                            
+                            <input type="text" list="other_list" id="input_txt" value="" />
+                            <datalist id="other_list">
+                                <option>Volvo</option>
+                                <option>YAMAHA</option>
+                                <option>Mercedes</option>
+                                <option>Audi</option>
+                            </datalist>
+                        </div>
+                        <div id="size_type">
+                            <h6 class="txt">尺寸</h6>
+                            <select id="markWidth" >
+                                <option value="10">10</option>
+                                <option value="15">15</option>
+                                <option value="20" selected>20</option>
+                                <option value="25">25</option>
+                                <option value="30">30</option>
+                                <option value="35">35</option>
+                                <option value="40">40</option>
+                                <option value="45">45</option>
+                            </select>
+                            <button class="size_button" data-width="10">10</button>
+                            <button class="size_button" data-width="15">15</button>
+                            <button class="size_button" data-width="20">20</button>
+                            <button class="size_button" data-width="25">25</button>
+                            <button class="size_button" data-width="30">30</button>
+                            <button class="size_button" data-width="35">35</button>
+                            <button class="size_button" data-width="40">40</button>
+                            <button class="size_button" data-width="45">45</button>                   
+                        </div>
+                        <div id="color_type">
+                            <h6 class="txt">顏色</h6>
+            
+                            <input id="fillColor" type="color" step="1" value="#ff0000">
+                            <button class="color_button" data-color="#ff0000">
+                                <div class="in_box" style="background-color: #ff0000;"></div>
+                            </button>
+                            <button class="color_button" data-color="#ffff00">
+                                <div class="in_box" style="background-color: #ffff00;"></div>
+                            </button>
+                            <button class="color_button" data-color="#00ff00">
+                                <div class="in_box" style="background-color: #00ff00;"></div>
+                            </button>
+                            <button class="color_button" data-color="#00ffff">
+                                <div class="in_box" style="background-color: #00ffff;"></div>
+                            </button>
+                            <button class="color_button" data-color="#0000ff">
+                                <div class="in_box" style="background-color: #0000ff;"></div>
+                            </button>
+                            <button class="color_button" data-color="#ff00ff">
+                                <div class="in_box" style="background-color: #ff00ff;"></div>
+                            </button>
+                            <button class="color_button" data-color="#ffffff">
+                                <div class="in_box" style="background-color: #ffffff;"></div>
+                            </button>
+                            <button class="color_button" data-color="#000000">
+                                <div class="in_box" style="background-color: #000000;"></div>
+                            </button>
+                        </div>
+
+                    </div>
+                    <!-- <div class="lightBorder _color">
+                        
+                        
+    
+                    </div> -->
+                </div>
+        
+
+                <div class="out_btn">
+                    <button id="canvas_clean">清除</button>
+                    <button id="canvas_cancle">取消</button>
+                    <button id="canvas_send">確定</button>
+                </div>
+                <div class="drag_box">
+                    <!-- <img class="drag_bg"> -->
+                    <input type="image" class="drag_bg">
+                    <canvas id="cvs"></canvas>
+                    <canvas id="cvs_cursor"></canvas>
+                </div>
+
+
+    
+            </div>
+        </div>
+        <div class="video_box">
+            <div class="main_box">
+                <div class="lightBorder">
+                    <select id="videoSource">
+                        <!-- <option value="1">1</option> -->
+                    </select>
+                </div>
+                <div class="out_btn">
+                    <button id="cam_cancle">取消</button>
+                    <button id="cam_send">拍照</button>
+                </div>
+                <div class="video">
+
+                    <video id="inputVideo"></video>
+
+    
+                </div>
+    
+            </div>
+        </div>
+
+        <div class="tree_box">
+            <div class="main_box ifreme">
+                <div class="out_btn">
+                    <button id="tree_cancle">取消</button>
+                    <button id="tree_send">擷取圖片</button>
+                </div>
+                <iframe src="" id="iframe_tree"></iframe>
+    
+            </div>
+        </div>
+
+
+        <ul class="text_menu">
+            <li class="menu-item menu-item-disabled">
+                <button type="button" class="menu-btn">
+                    <span class="menu-text">插入片語</span>
+                </button>
+            </li>
+            <li class="menu-separator"></li>
+            <li class="menu-item">
+                <button type="button" class="menu-btn input_txt" data-txt="皮膚膿瘍">
+                    <span class="menu-text">皮膚膿瘍</span>
+                </button>
+            </li>
+            <li class="menu-item">
+                <button type="button" class="menu-btn input_txt" data-txt="蜂窩組織炎">
+                    <span class="menu-text">蜂窩組織炎</span>
+                </button>
+            </li>
+            <li class="menu-item">
+                <button type="button" class="menu-btn input_txt" data-txt="異位性皮膚炎">
+                    <span class="menu-text">異位性皮膚炎</span>
+                </button>
+            </li>
+            <li class="menu-item">
+                <button type="button" class="menu-btn input_txt" data-txt="脂漏性皮膚炎">
+                    <span class="menu-text">脂漏性皮膚炎</span>
+                </button>
+            </li>
+            <li class="menu-item">
+                <button type="button" class="menu-btn input_txt" data-txt="過敏性接觸性皮膚炎">
+                    <span class="menu-text">過敏性接觸性皮膚炎</span>
+                </button>
+            </li>
+            <li class="menu-item">
+                <button type="button" class="menu-btn input_txt" data-txt="接觸性皮膚炎">
+                    <span class="menu-text">接觸性皮膚炎</span>
+                </button>
+            </li>
+            <li class="menu-item">
+                <button type="button" class="menu-btn input_txt" data-txt="感染性皮膚炎">
+                    <span class="menu-text">感染性皮膚炎</span>
+                </button>
+            </li>
+            <li class="menu-item">
+                <button type="button" class="menu-btn input_txt" data-txt="濕疹">
+                    <span class="menu-text">濕疹</span>
+                </button>
+            </li>
+            <li class="menu-item">
+                <button type="button" class="menu-btn input_txt" data-txt="癢疹">
+                    <span class="menu-text">癢疹</span>
+                </button>
+            </li>
+        </ul>
+
+        <ul class="canvas_menu">
+
+            <li class="canvas_item">
+                <button type="button" class="open_canvas">
+                    <div class="menu-text">編輯此圖片</div>
+                    <div class="menu-icon" style="background-image: url(img/img_01.png)"></div>
+                </button>
+            </li>
+
+            <li class="canvas_item">
+                <button type="button" class="gggg">
+                    <div class="menu-text">更換圖片</div>
+                    <div class="menu-icon" style="background-image: url(img/img_02.png)"></div>
+            
+                    <input type='file' class="input_img" accept="image/*" />
+                </button>
+            </li>
+            <li class="canvas_item">
+                <button type="button" class="open_recode">
+                    <div class="menu-text">打開攝影機</div>
+                    <div class="menu-icon" style="background-image: url(img/img_03.png)"></div>
+            
+                </button>
+            </li>
+            <li class="canvas_item">
+                <button type="button" class="open_tree">
+                    <div class="menu-text">選擇家族樹</div>
+                    <div class="menu-icon" style="background-image: url(img/img_04.png)"></div>
+                
+                </button>
+            </li>
+
+        </ul>
+    </div>
+    <div id="main_form">
+        <TABLE CELLSPACING=0 CELLPADDING=0 BORDER=0 COLS=33 ROWS=46>
+            <TR>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=23>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+            </TR>
+            <TR>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" CLASS=borderLeftTop HEIGHT=21 WIDTH=60 COLSPAN=3>
+                    <FONT SIZE=3 COLOR="#000000" FACE="標楷體">病歷號:</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderRightTop HEIGHT=21 WIDTH=140 COLSPAN=7>
+                    <FONT SIZE=2 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=CENTER VALIGN=CENTER BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=263 COLSPAN=13>
+                    <FONT SIZE=3 COLOR="#000000" FACE="標楷體">國立臺灣大學醫學院附設醫院</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+            </TR>
+            <TR>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" CLASS=borderLeft HEIGHT=21 WIDTH=60 COLSPAN=3>
+                    <FONT SIZE=3 COLOR="#000000" FACE="標楷體">姓&nbsp;&nbsp;名:</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderRight HEIGHT=21 WIDTH=140 COLSPAN=7>
+                    <FONT SIZE=2 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=CENTER VALIGN=CENTER BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=263 COLSPAN=13>
+                    <FONT SIZE=3 COLOR="#000000" FACE="Times New Roman">National&nbsp;Taiwan&nbsp;University&nbsp;Hospital</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+            </TR>
+            <TR>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" CLASS=borderLeftBottom HEIGHT=21 WIDTH=60 COLSPAN=3>
+                    <FONT SIZE=3 COLOR="#000000" FACE="標楷體">生&nbsp;&nbsp;日:</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" CLASS=borderRightBottom HEIGHT=21 WIDTH=140 COLSPAN=7>
+                    <FONT SIZE=2 COLOR="#000000" FACE="新細明體">西元年月日</FONT>
+                </TD>
+                <TD ALIGN=CENTER VALIGN=CENTER BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=263 COLSPAN=13>
+                    <FONT SIZE=4 COLOR="#000000" FACE="標楷體"><B>復健部職能治療報告</B></FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+            </TR>
+            <TR>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=23>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=CENTER VALIGN=CENTER BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="標楷體">第</FONT>
+                </TD>
+                <TD ALIGN=CENTER VALIGN=CENTER BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=40 COLSPAN=2>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">1</FONT>
+                </TD>
+                <TD ALIGN=CENTER VALIGN=CENTER BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="標楷體">頁</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+            </TR>
+            <TR>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=23 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderLeftTop HEIGHT=23 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderTop HEIGHT=23 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderTop HEIGHT=23 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderTop HEIGHT=23 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderTop HEIGHT=23 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderTop HEIGHT=23 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderTop HEIGHT=23 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="Times New Roman">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderTop HEIGHT=23 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="Times New Roman">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderTop HEIGHT=23 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="Times New Roman">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=CENTER VALIGN=CENTER BGCOLOR="#FFFFFF" CLASS=borderTop HEIGHT=23 WIDTH=243 COLSPAN=12>
+                    <FONT SIZE=3 COLOR="#000000" FACE="Times New Roman">Occupational&nbsp;Therapy&nbsp;Splint&nbsp;Note</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" CLASS=borderTop HEIGHT=23 WIDTH=180 COLSPAN=9>
+                    <FONT SIZE=3 COLOR="#000000" FACE="標楷體">(副木製作紀錄)</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderRightTop HEIGHT=23 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=23 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+            </TR>
+            <TR>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=19 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" CLASS=borderLeft HEIGHT=19 WIDTH=40 COLSPAN=2>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">Sex:</FONT>
+                </TD>
+                <TD ALIGN=CENTER VALIGN=CENTER BGCOLOR="#FFFFFF" CLASS=borderBottom HEIGHT=19 WIDTH=40 COLSPAN=2>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><TEXTAREA STYLE="height:95%;width:98%;" ID="Sex" NAME="Sex"></TEXTAREA></FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=19 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" HEIGHT=19 WIDTH=40 COLSPAN=2>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">Age:&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=CENTER VALIGN=CENTER BGCOLOR="#FFFFFF" CLASS=borderBottom HEIGHT=19 WIDTH=40 COLSPAN=2>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><TEXTAREA STYLE="height:95%;width:98%;" ID="Age" NAME="Age"></TEXTAREA></FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=19 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=TOP BGCOLOR="#FFFFFF" HEIGHT=19 WIDTH=103 COLSPAN=5>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">Referral&nbsp;doctor:&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" CLASS=borderBottom HEIGHT=19 WIDTH=100 COLSPAN=5>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><TEXTAREA STYLE="height:95%;width:98%;" ID="Referral-doctor" NAME="Referral-doctor"></TEXTAREA></FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=19 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" HEIGHT=19 WIDTH=100 COLSPAN=5>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">Referral&nbsp;date:</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" CLASS=borderRightBottom HEIGHT=19 WIDTH=100 COLSPAN=5>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><TEXTAREA STYLE="height:95%;width:98%;" ID="Referral-date" NAME="Referral-date"></TEXTAREA></FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=19 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+            </TR>
+            <TR>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=20 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" CLASS=borderLeft HEIGHT=20 WIDTH=80 COLSPAN=4>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">Diagnosis:</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" CLASS=borderRightBottom HEIGHT=20 WIDTH=543 COLSPAN=27>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><TEXTAREA STYLE="height:95%;width:98%;" ID="Diagnosis" NAME="Diagnosis"></TEXTAREA></FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=20 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+            </TR>
+            <TR>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=19 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderLeft HEIGHT=19 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=19 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=19 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=19 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" CLASS=borderRightBottom HEIGHT=19 WIDTH=543 COLSPAN=27>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><TEXTAREA STYLE="height:95%;width:98%;" ID="Diagnosis" NAME="Diagnosis"></TEXTAREA></FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=19 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+            </TR>
+            <TR>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" CLASS=borderLeft HEIGHT=21 WIDTH=100 COLSPAN=5>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">Doctor&nbsp;advice:&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" CLASS=borderRight HEIGHT=21 WIDTH=523 COLSPAN=26>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><TEXTAREA STYLE="height:95%;width:98%;" ID="Doctor-advice" NAME="Doctor-advice"></TEXTAREA></FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+            </TR>
+            <TR>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" CLASS=borderLeft HEIGHT=21 WIDTH=140 COLSPAN=7>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">Ⅰ.&nbsp;Chief&nbsp;Problem:</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=23>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderRight HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+            </TR>
+            <TR>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderLeft HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=TOP BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><INPUT TYPE="checkbox" ID="Chief-Problem:Abnormal-muscle-tone-of"
+                            NAME="Chief-Problem:Abnormal-muscle-tone-of"></FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=180 COLSPAN=9>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">Abnormal&nbsp;muscle&nbsp;tone&nbsp;of</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" CLASS=borderRightBottom HEIGHT=21 WIDTH=403 COLSPAN=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><TEXTAREA STYLE="height:95%;width:98%;" ID="Abnormal-muscle-tone"
+                            NAME="Abnormal-muscle-tone"></TEXTAREA></FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+            </TR>
+            <TR>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderLeft HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=TOP BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><INPUT TYPE="checkbox" ID="Chief-Problem:Decrease-active-motion-of-limbs-or-prolonged-bed-ridden-was-indicated"
+                            NAME="Chief-Problem:Decrease-active-motion-of-limbs-or-prolonged-bed-ridden-was-indicated"></FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=563 COLSPAN=28>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">Decrease&nbsp;active&nbsp;motion&nbsp;of&nbsp;limbs&nbsp;or&nbsp;prolonged&nbsp;bed-ridden&nbsp;was&nbsp;indicated.</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderRight HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+            </TR>
+            <TR>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderLeft HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=TOP BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><INPUT TYPE="checkbox" ID="Chief-Problem:injury" NAME="Chief-Problem:injury"></FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" CLASS=borderBottom HEIGHT=21 WIDTH=200 COLSPAN=10>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><TEXTAREA STYLE="height:95%;width:98%;" ID="injury" NAME="injury"></TEXTAREA></FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=TOP BGCOLOR="#FFFFFF" CLASS=borderBottom HEIGHT=21 WIDTH=83 COLSPAN=4>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><SELECT ID="injury1" NAME="injury1" STYLE="width: 92px;">
+                            <OPTION VALUE=""></OPTION>
+                            <OPTION VALUE="nerve">nerve</OPTION>
+                            <OPTION VALUE="tendon">tendon</OPTION>
+                            <OPTION VALUE=""></OPTION>
+                        </SELECT></FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=TOP BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=40 COLSPAN=2>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">injury.</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderRight HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+            </TR>
+            <TR>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderLeft HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=TOP BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><INPUT TYPE="checkbox" ID="Chief-Problem:Frequent-burning-tingling-or-itching-numbness-in-plam"
+                            NAME="Chief-Problem:Frequent-burning-tingling-or-itching-numbness-in-plam"></FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=TOP BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=383 COLSPAN=19>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">Frequent&nbsp;burning,&nbsp;tingling,&nbsp;or&nbsp;itching&nbsp;numbness&nbsp;in&nbsp;palm&nbsp;of&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=TOP BGCOLOR="#FFFFFF" CLASS=borderRightBottom HEIGHT=21 WIDTH=200 COLSPAN=10>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><SELECT ID="Frequent-burning-tingling-or-itching-numbness-in-plam"
+                            NAME="Frequent-burning-tingling-or-itching-numbness-in-plam" STYLE="width: 230px;">
+                            <OPTION VALUE=""></OPTION>
+                            <OPTION VALUE="right hand and fingers.">right hand and fingers.</OPTION>
+                            <OPTION VALUE="left hand and fingers.">left hand and fingers.</OPTION>
+                            <OPTION VALUE="bilateral hand and fingers.">bilateral hand and fingers.</OPTION>
+                            <OPTION VALUE=""></OPTION>
+                        </SELECT></FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+            </TR>
+            <TR>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderLeft HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=TOP BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><INPUT TYPE="checkbox" ID="Chief-Problem:Pain-and-swelling0over"
+                            NAME="Chief-Problem:Pain-and-swelling0over"></FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=160 COLSPAN=8>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">Pain&nbsp;and&nbsp;swelling&nbsp;over&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=TOP BGCOLOR="#FFFFFF" CLASS=borderBottom HEIGHT=21 WIDTH=203 COLSPAN=10>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><SELECT ID="Pain-and-swelling-over" NAME="Pain-and-swelling-over"
+                            STYLE="width: 230px;">
+                            <OPTION VALUE=""></OPTION>
+                            <OPTION VALUE="right thumb side of wrist.">right thumb side of wrist.</OPTION>
+                            <OPTION VALUE="left thumb side of wrist.">left thumb side of wrist.</OPTION>
+                            <OPTION VALUE="bilateral thumb side of wrist.">bilateral thumb side of wrist.</OPTION>
+                            <OPTION VALUE=""></OPTION>
+                        </SELECT></FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderRight HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+            </TR>
+            <TR>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderLeft HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=TOP BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><INPUT TYPE="checkbox" ID="Chief-Problem:Drop-foot" NAME="Chief-Problem:Drop-foot"></FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=80 COLSPAN=4>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">Drop&nbsp;foot.</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=23>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderRight HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+            </TR>
+            <TR>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderLeft HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=TOP BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><INPUT TYPE="checkbox" ID="Chief-Problem:Ampuation-sequel" NAME="Chief-Problem:Ampuation-sequel"></FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=160 COLSPAN=8>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">Amputation&nbsp;sequel.</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=23>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderRight HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+            </TR>
+            <TR>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderLeft HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=TOP BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><INPUT TYPE="checkbox" ID="Cheif-Problem:Burn-injury" NAME="Cheif-Problem:Burn-injury"></FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=100 COLSPAN=5>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">Burn&nbsp;injury.</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=23>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderRight HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+            </TR>
+            <TR>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderLeft HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=TOP BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><INPUT TYPE="checkbox" ID="Chief-Problem:Others" NAME="Chief-Problem:Others"></FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=60 COLSPAN=3>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">Others:</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=TOP BGCOLOR="#FFFFFF" CLASS=borderRight HEIGHT=41 WIDTH=523 COLSPAN=26 ROWSPAN=2>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><TEXTAREA STYLE="height:95%;width:98%;" ID="Others" NAME="Others"></TEXTAREA></FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+            </TR>
+            <TR>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=20 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderLeft HEIGHT=20 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=20 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=20 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=20 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=20 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=20 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+            </TR>
+            <TR>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" CLASS=borderLeft HEIGHT=21 WIDTH=100 COLSPAN=5>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">Ⅱ.&nbsp;OT&nbsp;Goal:&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=23>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderRight HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+            </TR>
+            <TR>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderLeft HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=TOP BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><INPUT TYPE="checkbox" ID="OT-Gola:To-protect" NAME="OT-Gola:To-protect"></FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" CLASS=borderRight HEIGHT=21 WIDTH=583 COLSPAN=29>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">To&nbsp;protect&nbsp;or&nbsp;support&nbsp;joints&nbsp;and&nbsp;soft&nbsp;tissue&nbsp;to&nbsp;encourage&nbsp;healing&nbsp;or&nbsp;to&nbsp;reduce&nbsp;inflammation.</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+            </TR>
+            <TR>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderLeft HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=TOP BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><INPUT TYPE="checkbox" ID="OT-Goal:To-maintain-the-structure" NAME="OT-Goal:To-maintain-the-structure"></FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" CLASS=borderRight HEIGHT=21 WIDTH=583 COLSPAN=29>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">To&nbsp;maintain&nbsp;the&nbsp;structure&nbsp;of&nbsp;the&nbsp;wrist&nbsp;and&nbsp;hand&nbsp;in&nbsp;balance&nbsp;to&nbsp;preserve&nbsp;&nbsp;prehension&nbsp;and</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+            </TR>
+            <TR>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderLeft HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=120 COLSPAN=6>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">functional&nbsp;ability.</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=23>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderRight HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+            </TR>
+            <TR>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderLeft HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=TOP BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><INPUT TYPE="checkbox" ID="OT-Goal:To-maintian" NAME="OT-Goal:To-maintian"></FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=100 COLSPAN=5>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">To&nbsp;maintain</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" CLASS=borderBottom HEIGHT=21 WIDTH=203 COLSPAN=10>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><TEXTAREA STYLE="height:95%;width:98%;" ID="To-maintain" NAME="To-maintain"></TEXTAREA></FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=200 COLSPAN=10>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">joint(s)&nbsp;in&nbsp;neutral&nbsp;position.</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderRight HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+            </TR>
+            <TR>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderLeft HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=TOP BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><INPUT TYPE="checkbox" ID="OT-Goal:To-prevent-further-deformity"
+                            NAME="OT-Goal:To-prevent-further-deformity"></FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" CLASS=borderRight HEIGHT=21 WIDTH=583 COLSPAN=29>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">To&nbsp;prevent&nbsp;further&nbsp;deformity&nbsp;or&nbsp;contracture&nbsp;and&nbsp;improve&nbsp;the&nbsp;quality&nbsp;of&nbsp;ambulation.</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+            </TR>
+            <TR>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderLeft HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=TOP BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><INPUT TYPE="checkbox" ID="OT-Goal:Others" NAME="OT-Goal:Others"></FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=60 COLSPAN=3>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">Others:</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=TOP BGCOLOR="#FFFFFF" CLASS=borderRight HEIGHT=42 WIDTH=523 COLSPAN=26 ROWSPAN=2>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><TEXTAREA STYLE="height:95%;width:98%;" ID="Others1" NAME="Others1"></TEXTAREA></FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+            </TR>
+            <TR>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderLeft HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+            </TR>
+            <TR>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" CLASS=borderLeft HEIGHT=21 WIDTH=220 COLSPAN=11>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">Ⅲ.&nbsp;Type&nbsp;of&nbsp;Splint&nbsp;Provided:</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=23>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderRight HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+            </TR>
+            <TR>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderLeft HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=TOP BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><INPUT TYPE="checkbox" ID="Type-of-Splint-Proveded:Ankle-foot-Orthosis"
+                            NAME="Type-of-Splint-Proveded:Ankle-foot-Orthosis"></FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=140 COLSPAN=7>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">Ankle-foot-Orthosis&nbsp;(</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=TOP BGCOLOR="#FFFFFF" CLASS=borderBottom HEIGHT=21 WIDTH=80 COLSPAN=4>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><SELECT ID="Ankle-foot-Orthosis" NAME="Ankle-foot-Orthosis" STYLE="width: 92px;">
+                            <OPTION VALUE=" "> </OPTION>
+                            <OPTION VALUE="anterior">anterior</OPTION>
+                            <OPTION VALUE="posterior">posterior</OPTION>
+                            <OPTION VALUE=""></OPTION>
+                        </SELECT></FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=63 COLSPAN=3>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">type)&nbsp;for</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=TOP BGCOLOR="#FFFFFF" CLASS=borderBottom HEIGHT=21 WIDTH=80 COLSPAN=4>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><SELECT ID="Ankle-foot-Orthosis1" NAME="Ankle-foot-Orthosis1"
+                            STYLE="width: 92px;">
+                            <OPTION VALUE=" "> </OPTION>
+                            <OPTION VALUE="bilateral">bilateral</OPTION>
+                            <OPTION VALUE="right">right</OPTION>
+                            <OPTION VALUE="left">left</OPTION>
+                            <OPTION VALUE=""></OPTION>
+                        </SELECT></FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=40 COLSPAN=2>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">foot.</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderRight HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+            </TR>
+            <TR>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderLeft HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=TOP BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><INPUT TYPE="checkbox" ID="Type-of-Splint-Provided:Resting-hand-splint"
+                            NAME="Type-of-Splint-Provided:Resting-hand-splint"></FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=160 COLSPAN=8>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">Resting&nbsp;hand&nbsp;splint&nbsp;for</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=TOP BGCOLOR="#FFFFFF" CLASS=borderBottom HEIGHT=21 WIDTH=60 COLSPAN=3>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><SELECT ID="hand" NAME="hand" STYLE="width: 69px;">
+                            <OPTION VALUE=" "> </OPTION>
+                            <OPTION VALUE="right">right</OPTION>
+                            <OPTION VALUE="left">left</OPTION>
+                            <OPTION VALUE="bilateral">bilateral</OPTION>
+                            <OPTION VALUE=""></OPTION>
+                        </SELECT></FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=43 COLSPAN=2>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">hand.</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderRight HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+            </TR>
+            <TR>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderLeft HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=TOP BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><INPUT TYPE="checkbox" ID="Type-of-Splint-Provided:Cock-up-splint"
+                            NAME="Type-of-Splint-Provided:Cock-up-splint"></FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=TOP BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=120 COLSPAN=6>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">Cock-up&nbsp;splint&nbsp;for</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=TOP BGCOLOR="#FFFFFF" CLASS=borderBottom HEIGHT=21 WIDTH=60 COLSPAN=3>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><SELECT ID="wrist" NAME="wrist" STYLE="width: 69px;">
+                            <OPTION VALUE=" "> </OPTION>
+                            <OPTION VALUE="right">right</OPTION>
+                            <OPTION VALUE="left">left</OPTION>
+                            <OPTION VALUE="bilateral">bilateral</OPTION>
+                            <OPTION VALUE=""></OPTION>
+                        </SELECT></FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=40 COLSPAN=2>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">wrist.</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=23>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderRight HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+            </TR>
+            <TR>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderLeft HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=TOP BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><INPUT TYPE="checkbox" ID="Type-of-Splint-Provided:Long-opponus-splint"
+                            NAME="Type-of-Splint-Provided:Long-opponus-splint"></FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=160 COLSPAN=8>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">Long&nbsp;opponus&nbsp;splint&nbsp;for</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=TOP BGCOLOR="#FFFFFF" CLASS=borderBottom HEIGHT=21 WIDTH=60 COLSPAN=3>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><SELECT ID="thumb" NAME="thumb" STYLE="width: 69px;">
+                            <OPTION VALUE=" "> </OPTION>
+                            <OPTION VALUE="right">right</OPTION>
+                            <OPTION VALUE="left">left</OPTION>
+                            <OPTION VALUE="bilateral">bilateral</OPTION>
+                            <OPTION VALUE=""></OPTION>
+                        </SELECT></FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=63 COLSPAN=3>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">thumb.</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderRight HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+            </TR>
+            <TR>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderLeft HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=TOP BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><INPUT TYPE="checkbox" ID="Type-of-Splint-Provided:Short-opponus-splint"
+                            NAME="Type-of-Splint-Provided:Short-opponus-splint"></FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=TOP BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=160 COLSPAN=8>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">Short&nbsp;opponus&nbsp;splint&nbsp;for</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=TOP BGCOLOR="#FFFFFF" CLASS=borderBottom HEIGHT=21 WIDTH=60 COLSPAN=3>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><SELECT ID="thumb1" NAME="thumb1" STYLE="width: 69px;">
+                            <OPTION VALUE=" "> </OPTION>
+                            <OPTION VALUE="right">right</OPTION>
+                            <OPTION VALUE="left">left</OPTION>
+                            <OPTION VALUE="bilateral">bilateral</OPTION>
+                            <OPTION VALUE=""></OPTION>
+                        </SELECT></FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=63 COLSPAN=3>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">thumb.</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderRight HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+            </TR>
+            <TR>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderLeft HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=TOP BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><INPUT TYPE="checkbox" ID="Type-of-Splint-Provided:Others" NAME="Type-of-Splint-Provided:Others"></FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=60 COLSPAN=3>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">Others:</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=TOP BGCOLOR="#FFFFFF" CLASS=borderRight HEIGHT=40 WIDTH=523 COLSPAN=26 ROWSPAN=2>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><TEXTAREA STYLE="height:95%;width:98%;" ID="Others2" NAME="Others2"></TEXTAREA></FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+            </TR>
+            <TR>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=19 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderLeft HEIGHT=19 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=19 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=19 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=19 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=19 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=19 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+            </TR>
+            <TR>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" CLASS=borderLeft HEIGHT=21 WIDTH=220 COLSPAN=11>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">Ⅳ.&nbsp;OT&nbsp;Treatment&nbsp;Provided:</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=23>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderRight HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+            </TR>
+            <TR>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderLeft HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=TOP BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><INPUT TYPE="checkbox" ID="OT-Tretment-Provided:Splinting" NAME="OT-Tretment-Provided:Splinting"></FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=100 COLSPAN=5>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">Splinting&nbsp;for</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=TOP BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><INPUT TYPE="checkbox" ID="OT-Treatment-Provided:positioning-and-lasting-two-hours-each-time"
+                            NAME="OT-Treatment-Provided:positioning-and-lasting-two-hours-each-time"></FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=283 COLSPAN=14>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">positioning&nbsp;and&nbsp;lasting&nbsp;two&nbsp;hours&nbsp;each&nbsp;time</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=TOP BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><INPUT TYPE="checkbox" ID="OT-Treatment-provided:24Hours-a-day"
+                            NAME="OT-Treatment-provided:24Hours-a-day"></FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=100 COLSPAN=5>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">24hours&nbsp;a&nbsp;day</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderRight HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+            </TR>
+            <TR>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderLeft HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=TOP BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><INPUT TYPE="checkbox" ID="OT-Treatment-Provided:Splinting" NAME="OT-Treatment-Provided:Splinting"></FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=80 COLSPAN=4>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">Splinting&nbsp;in</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=TOP BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><INPUT TYPE="checkbox" ID="OT-Treatment-Provided:ambulation" NAME="OT-Treatment-Provided:ambulation"></FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=80 COLSPAN=4>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">ambulation</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=TOP BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><INPUT TYPE="checkbox" ID="OT-Treatment-Provided:preforming-tasks"
+                            NAME="OT-Treatment-Provided:preforming-tasks"></FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=123 COLSPAN=6>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">performing&nbsp;tasks</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=TOP BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><INPUT TYPE="checkbox" ID="OT-Treatment-Provided:playing" NAME="OT-Treatment-Provided:playing"></FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=60 COLSPAN=3>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">playing</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=TOP BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><INPUT TYPE="checkbox" ID="OT-Treatment-Provided:sleeping" NAME="OT-Treatment-Provided:sleeping"></FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" CLASS=borderRight HEIGHT=21 WIDTH=80 COLSPAN=4>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">sleeping</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+            </TR>
+            <TR>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderLeft HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=TOP BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><INPUT TYPE="checkbox" ID="OT-Treatment-Provided:Ranging-exercise-was-recommended"
+                            NAME="OT-Treatment-Provided:Ranging-exercise-was-recommended"></FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=283 COLSPAN=14>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">Ranging&nbsp;exercise&nbsp;was&nbsp;recommended</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderRight HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+            </TR>
+            <TR>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderLeft HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=583 COLSPAN=29>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">Wearing&nbsp;schedule&nbsp;and&nbsp;precautions&nbsp;were&nbsp;instructed&nbsp;to&nbsp;the&nbsp;patient&nbsp;or&nbsp;the&nbsp;caregiver.</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderRight HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+            </TR>
+            <TR>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=24 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderLeft HEIGHT=24 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" HEIGHT=24 WIDTH=363 COLSPAN=18>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">Keep&nbsp;the&nbsp;splint&nbsp;away&nbsp;from&nbsp;heat&nbsp;or&nbsp;chemical&nbsp;liquid.</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=24 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=24 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=24 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=24 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=24 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=24 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=24 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=24 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=24 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=24 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=24 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderRight HEIGHT=24 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=24 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+            </TR>
+            <TR>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderLeftBottom HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderBottom HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderBottom HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderBottom HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderBottom HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderBottom HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" CLASS=borderBottom HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" CLASS=borderBottom HEIGHT=21 WIDTH=80 COLSPAN=4>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">Signature:</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" CLASS=borderBottom HEIGHT=21 WIDTH=203 COLSPAN=10>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><TEXTAREA STYLE="height:95%;width:98%;" ID="Singature" NAME="Singature"></TEXTAREA></FONT>
+                </TD>
+                <TD ALIGN=CENTER VALIGN=CENTER BGCOLOR="#FFFFFF" CLASS=borderBottom HEIGHT=21 WIDTH=40 COLSPAN=2>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">Date:</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=TOP BGCOLOR="#FFFFFF" CLASS=borderBottom HEIGHT=21 WIDTH=80 COLSPAN=4>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><INPUT TYPE="date" ID="Date" NAME="Date" VALUE=""></FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=TOP BGCOLOR="#FFFFFF" CLASS=borderRightBottom HEIGHT=21 WIDTH=80 COLSPAN=4>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體"><INPUT TYPE="time" ID="Time" NAME="Time" VALUE=""></FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+            </TR>
+            <TR>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=32 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=TOP BGCOLOR="#FFFFFF" HEIGHT=53 WIDTH=343 COLSPAN=17 ROWSPAN=2>
+                    <FONT SIZE=2 COLOR="#000000" FACE="標楷體">西元2010年2月8日病歷委員會修正通過 MR09-16-29<BR><BR></FONT>
+                </TD>
+                <TD ALIGN=CENTER VALIGN=CENTER BGCOLOR="#FFFFFF" CLASS=borderLeftRightBottom HEIGHT=32 WIDTH=60 COLSPAN=3>
+                    <FONT SIZE=2 COLOR="#000000" FACE="標楷體">文件編號</FONT>
+                </TD>
+                <TD ALIGN=CENTER VALIGN=CENTER BGCOLOR="#FFFFFF" CLASS=borderRightBottom HEIGHT=32 WIDTH=120 COLSPAN=6>
+                    <FONT SIZE=2 COLOR="#000000" FACE="標楷體">01400-4-600648</FONT>
+                </TD>
+                <TD ALIGN=CENTER VALIGN=CENTER BGCOLOR="#FFFFFF" CLASS=borderRightBottom HEIGHT=32 WIDTH=40 COLSPAN=2>
+                    <FONT SIZE=2 COLOR="#000000" FACE="標楷體">版次</FONT>
+                </TD>
+                <TD ALIGN=CENTER VALIGN=CENTER BGCOLOR="#FFFFFF" CLASS=borderRightBottom HEIGHT=32 WIDTH=40 COLSPAN=2>
+                    <FONT SIZE=2 COLOR="#000000" FACE="標楷體">03</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=TOP BGCOLOR="#FFFFFF" HEIGHT=32 WIDTH=40 COLSPAN=2>
+                    <FONT SIZE=6 COLOR="#000000" FACE="新細明體"><B>&#9313</B></FONT>
+                </TD>
+            </TR>
+            <TR>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+                <TD ALIGN=LEFT VALIGN=CENTER BGCOLOR="#FFFFFF" HEIGHT=21 WIDTH=20>
+                    <FONT SIZE=3 COLOR="#000000" FACE="新細明體">&nbsp;</FONT>
+                </TD>
+            </TR>
+        </TABLE>
+</div>
+
+<button id="back">回清單</button>
+<button id="save_data">存檔</button>
+
+</BODY></HTML>

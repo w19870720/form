@@ -1,0 +1,1374 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0090)file://\\VBOXSVR\myFile\ImageSVR.CFS\Designer 公司內部專用\SVR_FormDesigner 2020\temp.html -->
+<HTML><HEAD>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<META content="MSHTML 6.00.2900.6550" name=GENERATOR>
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Weather PWA">
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+<meta name="viewport" content="width=734">
+
+<script>
+    var page_id = "4545545";
+
+    function get_sess_data(){
+        document.getElementById("IDX002022").value = window.sessionStorage.getItem("name");
+        document.getElementById("IDX001022").value = window.sessionStorage.getItem("pid");
+        document.getElementById("IDX042022").value = window.sessionStorage.getItem("did");
+    }
+
+</script>
+
+
+<link rel="stylesheet" href="css/main.css">
+<script src="main.js"></script>
+
+</HEAD>
+<BODY>
+  <div>
+    <div class="signat_box">
+        <div class="main_box">
+            <div class="out_btn">
+                <button id="signat_clean">
+                    <span class="material-icons">clear</span>
+                    清除
+                </button>
+                <button id="signat_cancle">
+                    <span class="material-icons">edit</span>
+                    取消
+                </button>
+                <button id="signat_send">確定</button>
+            </div>
+            <div class="signat_drag_box bg_glay">
+                <canvas id="signat"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="signat_box">
+        <div class="main_box">
+            <div class="out_btn">
+                <button id="signat_clean">清除</button>
+                <button id="signat_cancle">取消</button>
+                <button id="signat_send">確定</button>
+            </div>
+            <div class="signat_drag_box">
+                <canvas id="signat"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="canvas_box">
+        <div class="main_box">
+            <div class="menu_box">
+                <div class="lightBorder _width">
+                    <label for="drag_pen">
+                        <input type="radio" name="shape" id="drag_pen" value="drag_pen" checked="checked">
+                        <span class="material-icons type_button">
+                            brush
+                        </span>
+                    </label>
+                    <label for="drag_eraser">
+                        <input type="radio" name="shape" id="drag_eraser" value="drag_eraser">
+                        <span class="material-icons type_button">
+                            how_to_vote
+                        </span>
+                    </label>
+                    <label for="drag_line">
+                        <input type="radio" name="shape" id="drag_line" value="drag_line">
+                        <span class="material-icons type_button">
+                            show_chart
+                        </span>
+                    </label>
+                    <label for="drag_arrow">
+                        <input type="radio" name="shape" id="drag_arrow" value="drag_arrow">
+                        <span class="material-icons type_button">
+                            call_made
+                        </span>
+                    </label>
+                    <label for="drag_spray">
+                        <input type="radio" name="shape" id="drag_spray" value="drag_spray">
+                        <span class="material-icons type_button">
+                            blur_on
+                        </span>
+                    </label>
+                    <label for="drag_cross">
+                        <input type="radio" name="shape" id="drag_cross" value="drag_cross">
+                        <span class="material-icons type_button">
+                            close
+                        </span>
+                    </label>
+                    <label for="drag_plus">
+                        <input type="radio" name="shape" id="drag_plus" value="drag_plus">
+                        <span class="material-icons type_button">
+                            add
+                        </span>
+                    </label>
+
+                    <label for="drag_circle_s">
+                        <input type="radio" name="shape" id="drag_circle_s" value="drag_circle_s">
+                        <span class="material-icons type_button">
+                            panorama_fish_eye
+                        </span>
+                    </label>
+                    <label for="drag_circle_f">
+                        <input type="radio" name="shape" id="drag_circle_f" value="drag_circle_f">
+                        <span class="material-icons type_button">
+                            lens
+                        </span>
+                    </label>
+                    <label for="drag_star_s">
+                        <input type="radio" name="shape" id="drag_star_s" value="drag_star_s">
+                        <span class="material-icons type_button">
+                            star_border
+                        </span>
+                    </label>
+                    <label for="drag_star_f">
+                        <input type="radio" name="shape" id="drag_star_f" value="drag_star_f">
+                        <span class="material-icons type_button">
+                            star
+                        </span>
+                    </label>
+                    <label for="drag_text">
+                        <input type="radio" name="shape" id="drag_text" value="drag_text">
+                        <span class="material-icons type_button">
+                            text_format
+                        </span>
+                    </label>
+            
+                    
+                </div>
+                <div class="lightBorder _size">
+                    <div id="width_type">
+                        <h6 class="txt">粗細</h6>
+                        <select id="lineWidth">
+                            <option value="1">1</option>
+                            <option value="5" selected>5</option>
+                            <option value="9">9</option>
+                            <option value="13">13</option>
+                            <option value="17">17</option>
+                            <option value="21">21</option>
+                            <option value="25">25</option>
+                            <option value="29">29</option>
+                        </select>
+                
+                        <button class="line_button" data-width="1">
+                            <div class="in_box" style="height: 1px;"></div>
+                        </button>
+                        <button class="line_button" data-width="5">
+                            <div class="in_box" style="height: 5px;"></div>
+                        </button>
+                        <button class="line_button" data-width="9">
+                            <div class="in_box" style="height: 9px;"></div>
+                        </button>
+                        <button class="line_button" data-width="13">
+                            <div class="in_box" style="height: 13px;"></div>
+                        </button>
+                        <button class="line_button" data-width="17">
+                            <div class="in_box" style="height: 17px;"></div>
+                        </button>
+                        <button class="line_button" data-width="21">
+                            <div class="in_box" style="height: 21px;"></div>
+                        </button>
+                        <button class="line_button" data-width="25">
+                            <div class="in_box" style="height: 25px;"></div>
+                        </button>
+                        <button class="line_button" data-width="25">
+                            <div class="in_box" style="height: 25px;"></div>
+                        </button>
+
+
+                        
+                    </div>
+                    <div id="text_type">
+                        <h6 class="txt">文字</h6>
+                        
+                        <input type="text" list="other_list" id="input_txt" value="" />
+                        <datalist id="other_list">
+                            <option>Volvo</option>
+                            <option>YAMAHA</option>
+                            <option>Mercedes</option>
+                            <option>Audi</option>
+                        </datalist>
+                    </div>
+                    <div id="size_type">
+                        <h6 class="txt">尺寸</h6>
+                        <select id="markWidth" >
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                            <option value="20" selected>20</option>
+                            <option value="25">25</option>
+                            <option value="30">30</option>
+                            <option value="35">35</option>
+                            <option value="40">40</option>
+                            <option value="45">45</option>
+                        </select>
+                        <button class="size_button" data-width="10">10</button>
+                        <button class="size_button" data-width="15">15</button>
+                        <button class="size_button" data-width="20">20</button>
+                        <button class="size_button" data-width="25">25</button>
+                        <button class="size_button" data-width="30">30</button>
+                        <button class="size_button" data-width="35">35</button>
+                        <button class="size_button" data-width="40">40</button>
+                        <button class="size_button" data-width="45">45</button>                   
+                    </div>
+                    <div id="color_type">
+                        <h6 class="txt">顏色</h6>
+        
+                        <input id="fillColor" type="color" step="1" value="#ff0000">
+                        <button class="color_button" data-color="#ff0000">
+                            <div class="in_box" style="background-color: #ff0000;"></div>
+                        </button>
+                        <button class="color_button" data-color="#ffff00">
+                            <div class="in_box" style="background-color: #ffff00;"></div>
+                        </button>
+                        <button class="color_button" data-color="#00ff00">
+                            <div class="in_box" style="background-color: #00ff00;"></div>
+                        </button>
+                        <button class="color_button" data-color="#00ffff">
+                            <div class="in_box" style="background-color: #00ffff;"></div>
+                        </button>
+                        <button class="color_button" data-color="#0000ff">
+                            <div class="in_box" style="background-color: #0000ff;"></div>
+                        </button>
+                        <button class="color_button" data-color="#ff00ff">
+                            <div class="in_box" style="background-color: #ff00ff;"></div>
+                        </button>
+                        <button class="color_button" data-color="#ffffff">
+                            <div class="in_box" style="background-color: #ffffff;"></div>
+                        </button>
+                        <button class="color_button" data-color="#000000">
+                            <div class="in_box" style="background-color: #000000;"></div>
+                        </button>
+                    </div>
+
+                </div>
+                <!-- <div class="lightBorder _color">
+                    
+                    
+
+                </div> -->
+            </div>
+    
+
+            <div class="out_btn">
+                <button id="canvas_clean">清除</button>
+                <button id="canvas_cancle">取消</button>
+                <button id="canvas_send">確定</button>
+            </div>
+            <div class="drag_box">
+                <!-- <img class="drag_bg"> -->
+                <input type="image" class="drag_bg">
+                <canvas id="cvs"></canvas>
+                <canvas id="cvs_cursor"></canvas>
+            </div>
+
+
+
+        </div>
+    </div>
+    <div class="video_box">
+        <div class="main_box">
+            <div class="lightBorder">
+                <select id="videoSource">
+                    <!-- <option value="1">1</option> -->
+                </select>
+            </div>
+            <div class="out_btn">
+                <button id="cam_cancle">取消</button>
+                <button id="cam_send">拍照</button>
+            </div>
+            <div class="video">
+
+                <video id="inputVideo"></video>
+
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="tree_box">
+        <div class="main_box ifreme">
+            <div class="out_btn">
+                <button id="tree_cancle">取消</button>
+                <button id="tree_send">擷取圖片</button>
+            </div>
+            <iframe src="" id="iframe_tree"></iframe>
+
+        </div>
+    </div>
+
+
+    <ul class="text_menu">
+        <li class="menu-item menu-item-disabled">
+            <button type="button" class="menu-btn">
+                <span class="menu-text">插入片語</span>
+            </button>
+        </li>
+        <li class="menu-separator"></li>
+        <li class="menu-item">
+            <button type="button" class="menu-btn input_txt" data-txt="皮膚膿瘍">
+                <span class="menu-text">皮膚膿瘍</span>
+            </button>
+        </li>
+        <li class="menu-item">
+            <button type="button" class="menu-btn input_txt" data-txt="蜂窩組織炎">
+                <span class="menu-text">蜂窩組織炎</span>
+            </button>
+        </li>
+        <li class="menu-item">
+            <button type="button" class="menu-btn input_txt" data-txt="異位性皮膚炎">
+                <span class="menu-text">異位性皮膚炎</span>
+            </button>
+        </li>
+        <li class="menu-item">
+            <button type="button" class="menu-btn input_txt" data-txt="脂漏性皮膚炎">
+                <span class="menu-text">脂漏性皮膚炎</span>
+            </button>
+        </li>
+        <li class="menu-item">
+            <button type="button" class="menu-btn input_txt" data-txt="過敏性接觸性皮膚炎">
+                <span class="menu-text">過敏性接觸性皮膚炎</span>
+            </button>
+        </li>
+        <li class="menu-item">
+            <button type="button" class="menu-btn input_txt" data-txt="接觸性皮膚炎">
+                <span class="menu-text">接觸性皮膚炎</span>
+            </button>
+        </li>
+        <li class="menu-item">
+            <button type="button" class="menu-btn input_txt" data-txt="感染性皮膚炎">
+                <span class="menu-text">感染性皮膚炎</span>
+            </button>
+        </li>
+        <li class="menu-item">
+            <button type="button" class="menu-btn input_txt" data-txt="濕疹">
+                <span class="menu-text">濕疹</span>
+            </button>
+        </li>
+        <li class="menu-item">
+            <button type="button" class="menu-btn input_txt" data-txt="癢疹">
+                <span class="menu-text">癢疹</span>
+            </button>
+        </li>
+    </ul>
+
+    <ul class="canvas_menu">
+
+        <li class="canvas_item">
+            <button type="button" class="open_canvas">
+                <div class="menu-text">編輯此圖片</div>
+                <div class="menu-icon" style="background-image: url(img/img_01.png)"></div>
+            </button>
+        </li>
+
+        <li class="canvas_item">
+            <button type="button" class="gggg">
+                <div class="menu-text">更換圖片</div>
+                <div class="menu-icon" style="background-image: url(img/img_02.png)"></div>
+        
+                <input type='file' class="input_img" accept="image/*" />
+            </button>
+        </li>
+        <li class="canvas_item">
+            <button type="button" class="open_recode">
+                <div class="menu-text">打開攝影機</div>
+                <div class="menu-icon" style="background-image: url(img/img_03.png)"></div>
+        
+            </button>
+        </li>
+        <li class="canvas_item">
+            <button type="button" class="open_tree">
+                <div class="menu-text">選擇家族樹</div>
+                <div class="menu-icon" style="background-image: url(img/img_04.png)"></div>
+            
+            </button>
+        </li>
+
+    </ul>
+</div>
+    <div id="main_form">
+<TABLE cellSpacing=0 cols=32 cellPadding=0 border=0 ROWS="42">
+  <TBODY>
+  <TR>
+    <TD width=23 bgColor=#ffffff height=23><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD vAlign=center align=middle width=368 bgColor=#ffffff colSpan=16 
+    height=46 rowSpan=2><FONT face=微軟正黑體 color=#000000 
+      size=4><B>耳鼻喉科鼻咽-喉纖維鏡檢查報告單</B></FONT> </TD>
+    <TD vAlign=center align=left width=92 bgColor=#ffffff colSpan=4 
+      height=23><FONT face=微軟正黑體 color=#000000 size=3>病歷號碼：</FONT> </TD>
+    <TD class=borderBottom vAlign=center align=left width=92 bgColor=#ffffff 
+    colSpan=4 height=23><FONT face=新細明體 color=#000000 size=2><INPUT 
+      id=IDX001022 style="WIDTH: 98%; HEIGHT: 95%" name=IDX001022></FONT> </TD>
+    <TD vAlign=center align=left width=69 bgColor=#ffffff colSpan=3 
+      height=23><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;年&nbsp;&nbsp;齡：</FONT> </TD>
+    <TD class=borderBottom vAlign=center align=left width=92 bgColor=#ffffff 
+    colSpan=4 height=23><FONT face=新細明體 color=#000000 size=2><INPUT 
+      id=IDX001029 style="WIDTH: 98%; HEIGHT: 95%" name=IDX001029></FONT> </TD></TR>
+  <TR>
+    <TD width=23 bgColor=#ffffff height=23><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=center align=left width=92 bgColor=#ffffff colSpan=4 
+      height=23><FONT face=微軟正黑體 color=#000000 
+      size=3>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</FONT> </TD>
+    <TD class=borderBottom vAlign=center align=left width=92 bgColor=#ffffff 
+    colSpan=4 height=23><FONT face=新細明體 color=#000000 size=2><INPUT 
+      id=IDX002022 style="WIDTH: 98%; HEIGHT: 95%" name=IDX002022></FONT> </TD>
+    <TD vAlign=center align=left width=69 bgColor=#ffffff colSpan=3 
+      height=23><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;性&nbsp;&nbsp;別：</FONT> </TD>
+    <TD vAlign=top align=left width=23 bgColor=#ffffff height=23><FONT 
+      face=新細明體 color=#000000 size=3><INPUT id=IDX002029 type=checkbox 
+      name=IDX002029></FONT> </TD>
+    <TD vAlign=center align=left width=23 bgColor=#ffffff height=23><FONT 
+      face=新細明體 color=#000000 size=3>男</FONT> </TD>
+    <TD vAlign=top align=left width=23 bgColor=#ffffff height=23><FONT 
+      face=新細明體 color=#000000 size=3><INPUT id=IDX002031 type=checkbox 
+      name=IDX002031></FONT> </TD>
+    <TD vAlign=center align=left width=23 bgColor=#ffffff height=23><FONT 
+      face=微軟正黑體 color=#000000 size=3>女</FONT> </TD></TR>
+  <TR>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD vAlign=top align=left width=23 bgColor=#ffffff height=19><FONT 
+      face=新細明體 color=#000000 size=3><INPUT id=IDX003017 type=checkbox 
+      name=IDX003017></FONT> </TD>
+    <TD vAlign=center align=left width=46 bgColor=#ffffff colSpan=2 
+      height=19><FONT face=微軟正黑體 color=#000000 size=3>門診</FONT> </TD>
+    <TD vAlign=top align=left width=23 bgColor=#ffffff height=19><FONT 
+      face=新細明體 color=#000000 size=3><INPUT id=IDX003020 type=checkbox 
+      name=IDX003020></FONT> </TD>
+    <TD vAlign=center align=left width=46 bgColor=#ffffff colSpan=2 
+      height=19><FONT face=微軟正黑體 color=#000000 size=3>急診</FONT> </TD>
+    <TD vAlign=top align=left width=23 bgColor=#ffffff height=19><FONT 
+      face=新細明體 color=#000000 size=3><INPUT id=IDX003023 type=checkbox 
+      name=IDX003023></FONT> </TD>
+    <TD vAlign=center align=left width=46 bgColor=#ffffff colSpan=2 
+      height=19><FONT face=微軟正黑體 color=#000000 size=3>住院</FONT> </TD>
+    <TD vAlign=center align=left width=69 bgColor=#ffffff colSpan=3 
+      height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;床&nbsp;&nbsp;號：</FONT> </TD>
+    <TD vAlign=center align=left width=92 bgColor=#ffffff colSpan=4 
+      height=19><FONT face=新細明體 color=#000000 size=2><INPUT id=IDX003029 
+      style="WIDTH: 98%; HEIGHT: 95%" name=IDX003029></FONT> </TD></TR>
+  <TR>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderLeftTop width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD>
+    <TD class=borderTop vAlign=center align=left width=92 bgColor=#ffffff 
+    colSpan=4 height=19><FONT face=微軟正黑體 color=#000000 
+      size=3><B>檢查日期&nbsp;:</B></FONT> </TD>
+    <TD class=borderTopBottom vAlign=top align=left width=115 bgColor=#ffffff 
+    colSpan=5 height=19><FONT face=新細明體 color=#000000 size=2><INPUT 
+      id=IDX004007 type=date name=IDX004007></FONT> </TD>
+    <TD class=borderTop width=23 bgColor=#ffffff height=19><FONT 
+      face="MS Sans Serif" color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD class=borderTop width=23 bgColor=#ffffff height=19><FONT 
+      face="MS Sans Serif" color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD class=borderTop width=23 bgColor=#ffffff height=19><FONT 
+      face="MS Sans Serif" color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD class=borderTop vAlign=top align=left width=92 bgColor=#ffffff colSpan=4 
+    height=19><FONT face=微軟正黑體 color=#000000 size=3>&nbsp;檢查號碼:</FONT> </TD>
+    <TD class=borderTopRight vAlign=center align=left width=322 bgColor=#ffffff 
+    colSpan=14 height=19><FONT face="MS Sans Serif" color=#000000 size=1><TEXTAREA id=IDX004019 style="WIDTH: 98%; HEIGHT: 95%" name=IDX004019></TEXTAREA></FONT> 
+    </TD></TR>
+  <TR>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderLeft width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=center align=left width=92 bgColor=#ffffff colSpan=4 
+      height=19><FONT face=微軟正黑體 color=#000000 size=3><B>臨床診斷&nbsp;:</B></FONT> 
+    </TD>
+    <TD class=borderRight vAlign=top align=left width=598 bgColor=#ffffff 
+    colSpan=26 height=61 rowSpan=3><FONT face=新細明體 color=#000000 size=2><TEXTAREA id=IDX005007 style="WIDTH: 98%; HEIGHT: 95%" name=IDX005007></TEXTAREA></FONT> 
+    </TD></TR>
+  <TR>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderLeft width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=23 bgColor=#ffffff height=23><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD class=borderLeft width=23 bgColor=#ffffff height=23><FONT 
+      face="MS Sans Serif" color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=23><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=23><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=23><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=23><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderLeft width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=top align=left width=92 bgColor=#ffffff colSpan=4 
+      height=19><FONT face=微軟正黑體 color=#000000 size=3><B>檢查理由&nbsp;:</B></FONT> 
+    </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD vAlign=top align=left width=92 bgColor=#ffffff colSpan=4 
+      height=19><FONT face=微軟正黑體 color=#000000 size=3><B>&nbsp;檢查代碼:</B></FONT> 
+    </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD class=borderRight width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderLeft width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=top align=left width=23 bgColor=#ffffff height=19><FONT 
+      face=新細明體 color=#000000 size=3><INPUT id=IDX009003 type=checkbox 
+      name=IDX009003></FONT> </TD>
+    <TD vAlign=center align=left width=253 bgColor=#ffffff colSpan=11 
+      height=19><FONT face=微軟正黑體 color=#000000 
+      size=2>Strong&nbsp;gag&nbsp;reflex&nbsp;of&nbsp;patient</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD vAlign=top align=left width=23 bgColor=#ffffff height=19><FONT 
+      face=新細明體 color=#000000 size=3><INPUT id=IDX009021 type=checkbox 
+      name=IDX009021></FONT> </TD>
+    <TD vAlign=center align=left width=161 bgColor=#ffffff colSpan=7 
+      height=19><FONT face=微軟正黑體 color=#000000 
+      size=2>28002C&nbsp;(&nbsp;Nasopharyngoscopy&nbsp;)</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderRight width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderLeft width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=top align=left width=23 bgColor=#ffffff height=19><FONT 
+      face=新細明體 color=#000000 size=3><INPUT id=IDX010003 type=checkbox 
+      name=IDX010003></FONT> </TD>
+    <TD vAlign=center align=left width=253 bgColor=#ffffff colSpan=11 
+      height=19><FONT face=微軟正黑體 color=#000000 
+      size=2>Patient&nbsp;inf&nbsp;bedridden&nbsp;state</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD vAlign=top align=left width=23 bgColor=#ffffff height=19><FONT 
+      face=新細明體 color=#000000 size=3><INPUT id=IDX010021 type=checkbox 
+      name=IDX010021></FONT> </TD>
+    <TD vAlign=center align=left width=138 bgColor=#ffffff colSpan=6 
+      height=19><FONT face=微軟正黑體 color=#000000 
+      size=2>28004C&nbsp;(Laryngoscopy&nbsp;)</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderRight width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderLeft width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=top align=left width=23 bgColor=#ffffff height=19><FONT 
+      face=新細明體 color=#000000 size=3><INPUT id=IDX011003 type=checkbox 
+      name=IDX011003></FONT> </TD>
+    <TD vAlign=center align=left width=253 bgColor=#ffffff colSpan=11 
+      height=19><FONT face=微軟正黑體 color=#000000 
+      size=2>For&nbsp;detailed&nbsp;evaluation</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderRight width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderLeft width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=top align=left width=23 bgColor=#ffffff height=19><FONT 
+      face=新細明體 color=#000000 size=3><INPUT id=IDX012003 type=checkbox 
+      name=IDX012003></FONT> </TD>
+    <TD vAlign=center align=left width=92 bgColor=#ffffff colSpan=4 
+      height=19><FONT face=微軟正黑體 color=#000000 size=2>Trismus</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderRight width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 
+      color=#000000 size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderLeft width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=top align=left width=23 bgColor=#ffffff height=19><FONT 
+      face=新細明體 color=#000000 size=3><INPUT id=IDX013003 type=checkbox 
+      name=IDX013003></FONT> </TD>
+    <TD vAlign=center align=left width=69 bgColor=#ffffff colSpan=3 
+      height=19><FONT face=微軟正黑體 color=#000000 size=2>Others&nbsp;:</FONT> </TD>
+    <TD class=borderBottom vAlign=center align=left width=575 bgColor=#ffffff 
+    colSpan=25 height=19><FONT face=新細明體 color=#000000 size=2><INPUT 
+      id=IDX013007 style="WIDTH: 98%; HEIGHT: 95%" name=IDX013007></FONT> </TD>
+    <TD class=borderRight width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderLeft width=23 bgColor=#ffffff height=19><FONT 
+      face="MS Sans Serif" color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD vAlign=center align=left width=368 bgColor=#ffffff colSpan=16 
+      height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>麻醉&nbsp;:Topical&nbsp;Anesthesia&nbsp;with&nbsp;0.1%&nbsp;Bosmin</FONT> 
+    </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderRight width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderLeft width=23 bgColor=#ffffff height=19><FONT 
+      face="MS Sans Serif" color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=center align=left width=138 bgColor=#ffffff colSpan=6 
+      height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>and&nbsp;1%&nbsp;Xylocaine</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=top align=left width=276 bgColor=#ffffff colSpan=12 height=165 
+    rowSpan=9><FONT face=新細明體 color=#000000 size=3>
+      <DIV><IMG id=IDX015020_back height=207 alt=IDX015020_back 
+      src="IDX015020.jpg" width=276 
+      name=IDX015020_back><IMG id=IDX015020_front height=207 alt=IDX015020_front 
+      src="clean.png" width=276 
+      name=IDX015020_front></DIV></FONT></TD>
+    <TD class=borderRight width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderLeft width=23 bgColor=#ffffff height=19><FONT 
+      face="MS Sans Serif" color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD vAlign=center align=left width=230 bgColor=#ffffff colSpan=10 
+      height=19><FONT face=微軟正黑體 color=#000000 
+      size=3><B>鼻咽&nbsp;-&nbsp;喉纖維鏡檢查所見&nbsp;:</B></FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD class=borderRight width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD class=borderLeft width=23 bgColor=#ffffff height=19><FONT 
+      face="MS Sans Serif" color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD vAlign=center align=left width=138 bgColor=#ffffff colSpan=6 
+      height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>1.&nbsp;Nasal&nbsp;cavity&nbsp;:</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD class=borderRight width=23 bgColor=#ffffff height=19><FONT 
+      face="MS Sans Serif" color=#000000 size=1>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD class=borderLeft width=23 bgColor=#ffffff height=19><FONT 
+      face="MS Sans Serif" color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=top align=left width=345 bgColor=#ffffff colSpan=15 height=51 
+    rowSpan=3><FONT face=新細明體 color=#000000 size=2><TEXTAREA id=IDX018004 style="WIDTH: 98%; HEIGHT: 95%" name=IDX018004></TEXTAREA></FONT> 
+    </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD class=borderRight width=23 bgColor=#ffffff height=19><FONT 
+      face="MS Sans Serif" color=#000000 size=1>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=23 bgColor=#ffffff height=16><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD class=borderLeft width=23 bgColor=#ffffff height=16><FONT 
+      face="MS Sans Serif" color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=16><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=16><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD class=borderRight width=23 bgColor=#ffffff height=16><FONT 
+      face="MS Sans Serif" color=#000000 size=1>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=23 bgColor=#ffffff height=16><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD class=borderLeft width=23 bgColor=#ffffff height=16><FONT 
+      face="MS Sans Serif" color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=16><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=16><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD class=borderRight width=23 bgColor=#ffffff height=16><FONT 
+      face="MS Sans Serif" color=#000000 size=1>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD class=borderLeft width=23 bgColor=#ffffff height=19><FONT 
+      face="MS Sans Serif" color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD vAlign=center align=left width=161 bgColor=#ffffff colSpan=7 
+      height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>2.&nbsp;Nasopharynx&nbsp;:</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD class=borderRight width=23 bgColor=#ffffff height=19><FONT 
+      face="MS Sans Serif" color=#000000 size=1>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderLeft width=23 bgColor=#ffffff height=19><FONT 
+      face="MS Sans Serif" color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=top align=left width=345 bgColor=#ffffff colSpan=15 height=57 
+    rowSpan=3><FONT face=新細明體 color=#000000 size=2><TEXTAREA id=IDX022004 style="WIDTH: 98%; HEIGHT: 95%" name=IDX022004></TEXTAREA></FONT> 
+    </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD class=borderRight width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderLeft width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderRight width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderLeft width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=top align=left width=276 bgColor=#ffffff colSpan=12 height=171 
+    rowSpan=9><FONT face=微軟正黑體 color=#000000 size=3>
+      <DIV><IMG id=IDX024020_back height=207 alt=IDX024020_back 
+      src="IDX024020.jpg" width=276 
+      name=IDX024020_back><IMG id=IDX024020_front height=207 alt=IDX024020_front 
+      src="clean.png" width=276 
+      name=IDX024020_front></DIV></FONT></TD>
+    <TD class=borderRight width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderLeft width=23 bgColor=#ffffff height=19><FONT 
+      face="MS Sans Serif" color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD vAlign=center align=left width=253 bgColor=#ffffff colSpan=11 
+      height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>3.&nbsp;Oral&nbsp;cavity&nbsp;/&nbsp;Oropharynx&nbsp;:</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderRight width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderLeft width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=top align=left width=345 bgColor=#ffffff colSpan=15 height=57 
+    rowSpan=3><FONT face=新細明體 color=#000000 size=2><TEXTAREA id=IDX026004 style="WIDTH: 98%; HEIGHT: 95%" name=IDX026004></TEXTAREA></FONT> 
+    </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderRight width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderLeft width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderRight width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderLeft width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderRight width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderLeft width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=center align=left width=92 bgColor=#ffffff colSpan=4 
+      height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>4.&nbsp;Larynx&nbsp;:</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderRight width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderLeft width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=top align=left width=345 bgColor=#ffffff colSpan=15 height=57 
+    rowSpan=3><FONT face=新細明體 color=#000000 size=2><TEXTAREA id=IDX030004 style="WIDTH: 98%; HEIGHT: 95%" name=IDX030004></TEXTAREA></FONT> 
+    </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderRight width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderLeft width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderRight width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderLeft width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderRight width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderLeft width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=center align=left width=161 bgColor=#ffffff colSpan=7 
+      height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>5.&nbsp;Hypopharynx&nbsp;:</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=top align=left width=276 bgColor=#ffffff colSpan=12 height=171 
+    rowSpan=9><FONT face=微軟正黑體 color=#000000 size=3>
+      <DIV><IMG id=IDX033020_back height=207 alt=IDX033020_back 
+      src="IDX033020.jpg" width=276 
+      name=IDX033020_back><IMG id=IDX033020_front height=207 alt=IDX033020_front 
+      src="clean.png" width=276 
+      name=IDX033020_front></DIV></FONT></TD>
+    <TD class=borderRight width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderLeft width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=top align=left width=345 bgColor=#ffffff colSpan=15 height=57 
+    rowSpan=3><FONT face=新細明體 color=#000000 size=2><TEXTAREA id=IDX034004 style="WIDTH: 98%; HEIGHT: 95%" name=IDX034004></TEXTAREA></FONT> 
+    </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderRight width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderLeft width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderRight width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderLeft width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderRight width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderLeft width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=center align=left width=161 bgColor=#ffffff colSpan=7 
+      height=19><FONT face=微軟正黑體 color=#000000 
+      size=3><B>鼻咽&nbsp;-&nbsp;喉維鏡診斷&nbsp;:</B></FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderRight width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderLeft width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD vAlign=top align=left width=345 bgColor=#ffffff colSpan=15 height=76 
+    rowSpan=4><FONT face=新細明體 color=#000000 size=2><TEXTAREA id=IDX038004 style="WIDTH: 98%; HEIGHT: 95%" name=IDX038004></TEXTAREA></FONT> 
+    </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderRight width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderLeft width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderRight width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderLeft width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderRight width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderLeft width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=微軟正黑體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD width=23 bgColor=#ffffff height=19><FONT face="MS Sans Serif" 
+      color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD class=borderRight width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD></TR>
+  <TR>
+    <TD width=23 bgColor=#ffffff height=19><FONT face=新細明體 color=#000000 
+      size=3>&nbsp;</FONT> </TD>
+    <TD class=borderLeftBottom width=23 bgColor=#ffffff height=19><FONT 
+      face=新細明體 color=#000000 size=3>&nbsp;</FONT> </TD>
+    <TD class=borderBottom width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD>
+    <TD class=borderBottom width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD>
+    <TD class=borderBottom width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD>
+    <TD class=borderBottom width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD>
+    <TD class=borderBottom width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD>
+    <TD class=borderBottom width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD>
+    <TD class=borderBottom width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD>
+    <TD class=borderBottom width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD>
+    <TD class=borderBottom width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD>
+    <TD class=borderBottom width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD>
+    <TD class=borderBottom width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD>
+    <TD class=borderBottom width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD>
+    <TD class=borderBottom width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD>
+    <TD class=borderBottom width=23 bgColor=#ffffff height=19><FONT face=新細明體 
+      color=#000000 size=3>&nbsp;</FONT> </TD>
+    <TD class=borderBottom width=23 bgColor=#ffffff height=19><FONT 
+      face="MS Sans Serif" color=#000000 size=1>&nbsp;</FONT> </TD>
+    <TD class=borderBottom vAlign=center align=left width=92 bgColor=#ffffff 
+    colSpan=4 height=19><FONT face=微軟正黑體 color=#000000 
+      size=3><B>報告醫師&nbsp;:</B></FONT> </TD>
+    <TD class=borderBottom vAlign=center align=left width=115 bgColor=#ffffff 
+    colSpan=5 height=19><FONT face=新細明體 color=#000000 size=2><INPUT 
+      id=IDX042022 style="WIDTH: 98%; HEIGHT: 95%" name=IDX042022></FONT> </TD>
+    <TD class=borderBottom vAlign=center align=left width=23 bgColor=#ffffff 
+    height=19><FONT face=新細明體 color=#000000 size=3>&nbsp;/</FONT> </TD>
+    <TD class=borderRightBottom vAlign=center align=left width=115 
+    bgColor=#ffffff colSpan=5 height=19><FONT face=新細明體 color=#000000 
+      size=2><INPUT id=IDX042028 style="WIDTH: 98%; HEIGHT: 95%" 
+      name=IDX042028></FONT> </TD></TR></TBODY>
+</TABLE>
+    
+</div>
+
+<button id="back">回清單</button>
+<button id="save_data">存檔</button>
+
+</BODY></HTML>

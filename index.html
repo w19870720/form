@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Weather PWA">
+
+    <meta name="viewport" content="width=1024">
+
+    <link rel="stylesheet" href="css/form_list.css" />
+    <script  type="text/javascript" src="js/form_list.js"></script>
+    <title>Form List</title>
+</head>
+<body>
+    <article id="wrapper">
+        <section id="info">
+            <div class="row">
+                <div class="col-2 ">
+                    <div class="avatar">
+                        <img src="img/headsnap.png" alt="avatar">
+                    </div>
+                </div>
+                <div class="col-10">
+                    <div class="top_box row">
+                        <h2 class="name">陳O文 <span class="line"></span></h2>
+                        <h2 class="pid">339445043</h2>
+
+                        <button id="clean">
+                            清除紀錄
+                        </button>
+                    </div>
+                    <div class="bottom_box row">
+                        <div class="col-6">
+                            <div class="column">
+                                <div class="title">
+                                    <span>性別</span>  
+                                </div>
+                                <div class="content sex">男</div>
+                            </div>
+                            <div class="column">
+                                <div class="title">
+                                    <span>生日</span> 
+                                </div>
+                                <div class="content birthday">1920 / 06 / 09</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="column">
+                                <div class="title">
+                                    <span>醫生代號</span>
+                                </div>
+                                <div class="content did">00124845</div>
+                            </div>
+                            <div class="column">
+                                <div class="title">
+                                    <span>醫生姓名</span>
+                                </div>
+                                <div class="content name">王醫生</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="content">
+            <div class="list_title">
+                <div class="title_bg">  
+                    <img src="img/title-bg.jpg" alt="list">
+                    <h4 class="title_txt">表單清單</h4>
+                </div>
+            </div>
+            <ul class="list">
+                <!-- <li>
+                    <i class="icon"> 
+                        <img src="img/arrow-icon.png" alt="icon">
+                    </i>
+                    <a href="耳鼻喉科鼻咽喉纖維鏡檢查報告單.htm">
+                        病理切片代檢同意及說明書
+                    </a>
+                </li>
+                <li>
+                    <i class="icon"> 
+                        <img src="img/arrow-icon.png" alt="icon">
+                    </i>
+                    <a href="耳鼻喉科鼻咽喉纖維鏡檢查報告單.htm">
+                        氣管內插管同意及說明書
+                    </a>
+                </li>
+                <li>
+                    <i class="icon"> 
+                        <img src="img/arrow-icon.png" alt="icon">
+                    </i>
+                    <a href="耳鼻喉科鼻咽喉纖維鏡檢查報告單.htm">
+                        保險對象使用健保部份給付暨自費同意書
+                    </a>
+                </li>
+                <li>
+                    <i class="icon"> 
+                        <img src="img/arrow-icon.png" alt="icon">
+                    </i>
+                    <a href="耳鼻喉科鼻咽喉纖維鏡檢查報告單.htm">
+                        手術同意書
+                    </a>
+                </li>
+                <li>
+                    <i class="icon"> 
+                        <img src="img/arrow-icon.png" alt="icon">
+                    </i>
+                    <a href="耳鼻喉科鼻咽喉纖維鏡檢查報告單.htm">
+                        WEB氣管內插管同意及說明書
+                    </a>
+                </li>
+                <li>
+                    <i class="icon"> 
+                        <img src="img/arrow-icon.png" alt="icon">
+                    </i>
+                    <a href="耳鼻喉科鼻咽喉纖維鏡檢查報告單.htm">
+                        麻醉同意書
+                    </a>
+                </li>
+                <li>
+                    <i class="icon"> 
+                        <img src="img/arrow-icon.png" alt="icon">
+                    </i>
+                    <a href="耳鼻喉科鼻咽喉纖維鏡檢查報告單.htm">
+                        乳房手術同意及說明書
+                    </a>
+                </li> -->
+                <li>
+                    <i class="icon"> 
+                        <img src="img/arrow-icon.png" alt="icon">
+                    </i>
+                    <a href="皮膚部初診病歷表.htm">
+                        皮膚部初診病歷表
+                    </a>
+                </li>
+                <li>
+                    <i class="icon"> 
+                        <img src="img/arrow-icon.png" alt="icon">
+                    </i>
+                    <a href="耳鼻喉科鼻咽喉纖維鏡檢查報告單.htm">
+                        耳鼻喉科鼻咽喉纖維鏡檢查報告單
+                    </a>
+                </li>
+                <li>
+                    <i class="icon"> 
+                        <img src="img/arrow-icon.png" alt="icon">
+                    </i>
+                    <a href="乳房超音波檢查結果.htm">
+                        乳房超音波檢查結果
+                    </a>
+                </li>
+                <li>
+                    <i class="icon"> 
+                        <img src="img/arrow-icon.png" alt="icon">
+                    </i>
+                    <a href="泌尿科結石分析報告.htm">
+                        泌尿科結石分析報告
+                    </a>
+                </li>
+                <li>
+                    <i class="icon"> 
+                        <img src="img/arrow-icon.png" alt="icon">
+                    </i>
+                    <a href="眼科複像簡查表.htm">
+                        眼科複像簡查表
+                    </a>
+                </li>
+                <li>
+                    <i class="icon"> 
+                        <img src="img/arrow-icon.png" alt="icon">
+                    </i>
+                    <a href="復健科檢查記錄.htm">
+                        復健科檢查記錄
+                    </a>
+                </li>
+                <li>
+                    <i class="icon"> 
+                        <img src="img/arrow-icon.png" alt="icon">
+                    </i>
+                    <a href="暴力危險程度評估表.htm">
+                        暴力危險程度評估表
+                    </a>
+                </li>
+                <li>
+                    <i class="icon"> 
+                        <img src="img/arrow-icon.png" alt="icon">
+                    </i>
+                    <a href="乳房手術同意及說明書.htm">
+                        乳房手術同意及說明書
+                    </a>
+                </li>
+
+
+                <li>
+                    <i class="icon"> 
+                        <img src="img/arrow-icon.png" alt="icon">
+                    </i>
+                    <a href="OT脊髓損傷結案20130319JAG.html">
+                        OT脊髓損傷結案20130319JAG.html
+                    </a>
+                </li>
+                <li>
+                    <i class="icon"> 
+                        <img src="img/arrow-icon.png" alt="icon">
+                    </i>
+                    <a href="OT骨外科結案20130319JAG.html">
+                        OT骨外科結案20130319JAG.html
+                    </a>
+                </li>
+                <li>
+                    <i class="icon"> 
+                        <img src="img/arrow-icon.png" alt="icon">
+                    </i>
+                    <a href="OT骨外科評估20130319JAG.html">
+                        OT骨外科評估20130319JAG.html
+                    </a>
+                </li>
+                <li>
+                    <i class="icon"> 
+                        <img src="img/arrow-icon.png" alt="icon">
+                    </i>
+                    <a href="OT副木製作紀錄20130319JAG.html">
+                        OT副木製作紀錄20130319JAG.html
+                    </a>
+                </li>
+                <li>
+                    <i class="icon"> 
+                        <img src="img/arrow-icon.png" alt="icon">
+                    </i>
+                    <a href="復健部兒童職能治療評估報告(發展遲緩)20130327N.html">
+                        復健部兒童職能治療評估報告(發展遲緩)20130327N.html
+                    </a>
+                </li>
+             
+            </ul>
+           
+        </section>
+    </article>
+    
+</body>
+</html>
